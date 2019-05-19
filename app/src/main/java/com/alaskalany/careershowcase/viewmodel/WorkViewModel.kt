@@ -37,13 +37,9 @@ import com.alaskalany.careershowcase.repository.DataRepository
 class WorkViewModel(application: Application, dataRepository: DataRepository, private val workId: Int) :
     AndroidViewModel(application) {
     
-    val observableWork: LiveData<WorkEntity>
+    val observableWork: LiveData<WorkEntity> = dataRepository.workRepository.load(workId)
     
     var work = ObservableField<WorkEntity>()
-    
-    init {
-        observableWork = dataRepository.workRepository.load(workId)
-    }
     
     fun setWork(product: WorkEntity) {
         

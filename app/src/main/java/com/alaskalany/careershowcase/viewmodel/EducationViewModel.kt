@@ -37,13 +37,9 @@ import com.alaskalany.careershowcase.repository.DataRepository
 class EducationViewModel(application: Application, dataRepository: DataRepository, private val educationId: Int) :
     AndroidViewModel(application) {
     
-    val observableEducation: LiveData<EducationEntity>
+    val observableEducation: LiveData<EducationEntity> = dataRepository.educationRepository.load(educationId)
     
     var education = ObservableField<EducationEntity>()
-    
-    init {
-        observableEducation = dataRepository.educationRepository.load(educationId)
-    }
     
     fun setEducation(education: EducationEntity) {
         

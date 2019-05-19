@@ -35,7 +35,7 @@ import com.alaskalany.careershowcase.file.FileData
 class ContactListViewModel(application: Application) : AndroidViewModel(application) {
     
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private val observableContacts: MediatorLiveData<List<ContactEntity>>
+    private val observableContacts: MediatorLiveData<List<ContactEntity>> = MediatorLiveData()
     
     /**
      * Expose the LiveData Products query so the UI can observe it.
@@ -44,8 +44,7 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
         get() = observableContacts
     
     init {
-        
-        observableContacts = MediatorLiveData()
+    
         // set by default null, until we get data from the database.
         observableContacts.value = null
         // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().contactRepository.getContacts();

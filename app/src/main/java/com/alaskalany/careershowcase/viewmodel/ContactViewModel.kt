@@ -37,13 +37,9 @@ import com.alaskalany.careershowcase.repository.DataRepository
 class ContactViewModel(application: Application, dataRepository: DataRepository, private val contactId: Int) :
     AndroidViewModel(application) {
     
-    val observableContact: LiveData<ContactEntity>
+    val observableContact: LiveData<ContactEntity> = dataRepository.contactRepository.load(contactId)
     
     var contact = ObservableField<ContactEntity>()
-    
-    init {
-        observableContact = dataRepository.contactRepository.load(contactId)
-    }
     
     fun setContact(contact: ContactEntity) {
         

@@ -37,13 +37,9 @@ import com.alaskalany.careershowcase.repository.DataRepository
 class SkillViewModel(application: Application, dataRepository: DataRepository, private val skillId: Int) :
     AndroidViewModel(application) {
     
-    val observableSkill: LiveData<SkillEntity>
+    val observableSkill: LiveData<SkillEntity> = dataRepository.skillRepository.load(skillId)
     
     var skill = ObservableField<SkillEntity>()
-    
-    init {
-        observableSkill = dataRepository.skillRepository.load(skillId)
-    }
     
     fun setSkill(skill: SkillEntity) {
         
