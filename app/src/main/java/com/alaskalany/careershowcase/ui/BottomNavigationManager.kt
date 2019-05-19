@@ -45,7 +45,7 @@ import java.util.*
  */
 class BottomNavigationManager
 /**
- * @param fragmentActivity [MainActivity]
+ * @param activity [MainActivity]
  */
     (
     /**
@@ -62,10 +62,9 @@ class BottomNavigationManager
     /**
      * Collection of fragments used with [BottomNavigationView]
      */
-    private val fragments: SparseArrayCompat<ScrollToTop>
+    private val fragments: SparseArrayCompat<ScrollToTop> = SparseArrayCompat()
     
     init {
-        fragments = SparseArrayCompat()
         createFragments(fragments)
         
         // Set the bottom navigation view
@@ -93,23 +92,23 @@ class BottomNavigationManager
         // Replace current fragment with requested fragment
         when (menuItem.itemId) {
             R.id.navigation_overview  -> {
-                replaceFragment(BottomNavigationManager.OVERVIEW)
+                replaceFragment(OVERVIEW)
                 return true
             }
             R.id.navigation_education -> {
-                replaceFragment(BottomNavigationManager.EDUCATION)
+                replaceFragment(EDUCATION)
                 return true
             }
             R.id.navigation_work      -> {
-                replaceFragment(BottomNavigationManager.WORK)
+                replaceFragment(WORK)
                 return true
             }
             R.id.navigation_skills    -> {
-                replaceFragment(BottomNavigationManager.SKILLS)
+                replaceFragment(SKILLS)
                 return true
             }
             R.id.navigation_contact   -> {
-                replaceFragment(BottomNavigationManager.CONTACT)
+                replaceFragment(CONTACT)
                 return true
             }
         }
@@ -235,27 +234,27 @@ class BottomNavigationManager
         /**
          * [OverviewFragment]
          */
-        private val OVERVIEW = 0
+        private const val OVERVIEW = 0
         
         /**
          * [EducationListFragment]
          */
-        private val EDUCATION = 1
+        private const val EDUCATION = 1
         
         /**
          * [WorkListFragment]
          */
-        private val WORK = 2
+        private const val WORK = 2
         
         /**
          * [SkillListFragment]
          */
-        private val SKILLS = 3
+        private const val SKILLS = 3
         
         /**
          * [ContactListFragment]
          */
-        private val CONTACT = 4
+        private const val CONTACT = 4
         
         private fun createFragments(mFragments: SparseArrayCompat<ScrollToTop>) {
             
