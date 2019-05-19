@@ -35,16 +35,13 @@ import com.alaskalany.careershowcase.entity.ContactEntity
 import com.alaskalany.careershowcase.repository.DataRepository
 
 class ContactViewModel(application: Application, dataRepository: DataRepository, private val contactId: Int) :
-    AndroidViewModel(application) {
+        AndroidViewModel(application) {
     
     val observableContact: LiveData<ContactEntity> = dataRepository.contactRepository.load(contactId)
     
     var contact = ObservableField<ContactEntity>()
     
-    fun setContact(contact: ContactEntity) {
-        
-        this.contact.set(contact)
-    }
+    fun setContact(contact: ContactEntity) = this.contact.set(contact)
     
     /**
      * A creator is used to inject the product ID into the ViewModel
@@ -54,17 +51,11 @@ class ContactViewModel(application: Application, dataRepository: DataRepository,
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
     class Factory(private val mApplication: Application, private val mContactId: Int) :
-        ViewModelProvider.NewInstanceFactory() {
+            ViewModelProvider.NewInstanceFactory() {
         
-        private val mRepository: DataRepository
+        private val mRepository: DataRepository = (mApplication as CareerShowcaseApp).repository!!
         
-        init {
-            mRepository = (mApplication as CareerShowcaseApp).repository!!
-        }
-        
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            
-            return ContactViewModel(mApplication, mRepository, mContactId) as T
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T =
+            ContactViewModel(mApplication, mRepository, mContactId) as T
     }
 }

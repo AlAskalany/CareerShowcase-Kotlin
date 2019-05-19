@@ -31,27 +31,22 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 class EducationRepository(private val dataRepository: DataRepository) {
     
     var observableEducations: MediatorLiveData<List<EducationEntity>>? = null
-    
     fun insertAll(educationEntities: List<EducationEntity>) {
     }
     
     fun load(educationId: Int): LiveData<EducationEntity> {
-        
         return dataRepository.database.educationDao().load(educationId)
     }
     
     fun loadSync(educationId: Int): EducationEntity {
-        
         return dataRepository.database.educationDao().loadSync(educationId)
     }
     
     fun loadAll(): LiveData<List<EducationEntity>> {
-        
         return dataRepository.database.educationDao().loadAll()
     }
     
     fun getEducations(): MediatorLiveData<List<EducationEntity>>? {
-        
         return observableEducations
     }
 }

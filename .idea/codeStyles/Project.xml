@@ -61,7 +61,9 @@
       <option name="JD_ALIGN_EXCEPTION_COMMENTS" value="false" />
     </JavaCodeStyleSettings>
     <JetCodeStyleSettings>
-      <option name="ALIGN_IN_COLUMNS_CASE_BRANCH" value="true" />
+      <option name="CONTINUATION_INDENT_IN_SUPERTYPE_LISTS" value="true" />
+      <option name="CONTINUATION_INDENT_IN_IF_CONDITIONS" value="true" />
+      <option name="IF_RPAREN_ON_NEW_LINE" value="false" />
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <DBN-PSQL>
@@ -214,11 +216,15 @@
       <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
       <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="0" />
       <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
-      <option name="ALIGN_MULTILINE_EXTENDS_LIST" value="true" />
-      <option name="ALIGN_MULTILINE_METHOD_BRACKETS" value="true" />
+      <option name="CALL_PARAMETERS_WRAP" value="1" />
+      <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="false" />
+      <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="false" />
+      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="PARAMETER_ANNOTATION_WRAP" value="2" />
       <option name="VARIABLE_ANNOTATION_WRAP" value="2" />
+      <option name="ENUM_CONSTANTS_WRAP" value="2" />
       <option name="arrangementSettings" />
       <option name="forceArrangeMenuAvailable" value="false" />
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
@@ -261,7 +267,7 @@
       <option name="INDENT_BREAK_FROM_CASE" value="true" />
       <option name="SPECIAL_ELSE_IF_TREATMENT" value="true" />
       <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="false" />
-      <option name="ALIGN_MULTILINE_PARAMETERS" value="true" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
       <option name="ALIGN_MULTILINE_RESOURCES" value="true" />
       <option name="ALIGN_MULTILINE_FOR" value="true" />
@@ -271,8 +277,8 @@
       <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="false" />
       <option name="ALIGN_MULTILINE_THROWS_LIST" value="false" />
       <option name="ALIGN_THROWS_KEYWORD" value="false" />
-      <option name="ALIGN_MULTILINE_EXTENDS_LIST" value="true" />
-      <option name="ALIGN_MULTILINE_METHOD_BRACKETS" value="true" />
+      <option name="ALIGN_MULTILINE_EXTENDS_LIST" value="false" />
+      <option name="ALIGN_MULTILINE_METHOD_BRACKETS" value="false" />
       <option name="ALIGN_MULTILINE_PARENTHESIZED_EXPRESSION" value="false" />
       <option name="ALIGN_MULTILINE_ARRAY_INITIALIZER_EXPRESSION" value="false" />
       <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="false" />
@@ -344,10 +350,10 @@
       <option name="SPACE_BEFORE_COLON" value="true" />
       <option name="SPACE_AFTER_COLON" value="true" />
       <option name="SPACE_BEFORE_TYPE_PARAMETER_LIST" value="false" />
-      <option name="CALL_PARAMETERS_WRAP" value="5" />
+      <option name="CALL_PARAMETERS_WRAP" value="1" />
       <option name="PREFER_PARAMETERS_WRAP" value="false" />
-      <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
-      <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+      <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="false" />
+      <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="false" />
       <option name="METHOD_PARAMETERS_WRAP" value="5" />
       <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
       <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
@@ -358,7 +364,7 @@
       <option name="THROWS_LIST_WRAP" value="0" />
       <option name="EXTENDS_KEYWORD_WRAP" value="0" />
       <option name="THROWS_KEYWORD_WRAP" value="0" />
-      <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
+      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="WRAP_FIRST_METHOD_IN_CALL_CHAIN" value="false" />
       <option name="PARENTHESES_EXPRESSION_LPAREN_WRAP" value="false" />
       <option name="PARENTHESES_EXPRESSION_RPAREN_WRAP" value="false" />
@@ -396,7 +402,7 @@
       <option name="VARIABLE_ANNOTATION_WRAP" value="2" />
       <option name="SPACE_BEFORE_ANOTATION_PARAMETER_LIST" value="false" />
       <option name="SPACE_WITHIN_ANNOTATION_PARENTHESES" value="false" />
-      <option name="ENUM_CONSTANTS_WRAP" value="0" />
+      <option name="ENUM_CONSTANTS_WRAP" value="2" />
       <option name="FORCE_REARRANGE_MODE" value="0" />
       <option name="WRAP_ON_TYPING" value="-1" />
       <indentOptions>

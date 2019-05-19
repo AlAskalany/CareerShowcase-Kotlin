@@ -28,7 +28,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
 import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.file.FileData
 
@@ -44,12 +43,14 @@ class EducationListViewModel(application: Application) : AndroidViewModel(applic
         get() = observableEducations
     
     init {
+        
         // set by default null, until we get data from the database.
         observableEducations.value = null
+        
         // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().educationRepository.getEducations();
         val listLiveData = FileData.getEducationLiveData(application)
+        
         // observe the changes of the products from the database and forward them
-        observableEducations.addSource(listLiveData,
-                                       Observer<List<EducationEntity>> { observableEducations.setValue(it) })
+        observableEducations.addSource(listLiveData) { observableEducations.setValue(it) }
     }
 }

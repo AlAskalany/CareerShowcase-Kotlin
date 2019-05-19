@@ -53,35 +53,20 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel
 class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
     
     private var binding: FragmentContactListBinding? = null
-    
     private var adapter: ContactAdapter? = null
-    
     private var columnCount = 1
-    
     override fun onClick(item: Contact) {
         Toast.makeText(this@ContactListFragment.context, "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    /**
-     * @param savedInstanceState
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
-        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
     
-    /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     *
-     * @return
-     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false)
         adapter = ContactAdapter(this)
         val context = binding!!.root.context
@@ -94,21 +79,7 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
         return binding!!.root
     }
     
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.  It is also useful for fragments that use
-     * [.setRetainInstance] to retain their instance,
-     * as this skillOnClickCallback tells the fragment when it is fully associated with
-     * the new activity instance.  This is called after [.onCreateView]
-     * and before [.onViewStateRestored].
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
-     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        
         super.onActivityCreated(savedInstanceState)
         val viewModel = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
         binding!!.contactListViewModel = viewModel
@@ -122,21 +93,18 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
     }
     
     override fun top() {
-        
         binding!!.listContact.smoothScrollToPosition(0)
     }
     
     companion object {
         
         private const val ARG_COLUMN_COUNT: String = "column-count"
-        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): ContactListFragment {
-            
             val fragment = ContactListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

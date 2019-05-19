@@ -32,33 +32,16 @@ import com.alaskalany.careershowcase.model.Skill
 /**
  * A skill item representing a piece of description.
  */
-
 @Entity(tableName = "skills_table")
 class SkillEntity : Skill {
     
-    
-    /**
-     * @return
-     */
-    /**
-     * @param pSkillId
-     */
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "skill_id")
     override var id: Int = 0
-    
-    /**
-     * @return
-     */
-    /**
-     * @param title
-     */
     @ColumnInfo(name = "skill_title")
     override var title: String? = null
-    
     @ColumnInfo(name = "skill_level")
     override var level: Int = 0
-    
     @ColumnInfo(name = "skill_log_url")
     override var logoUrl: String? = null
 }

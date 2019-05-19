@@ -38,22 +38,16 @@ class WorkEntity : Work {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "work_id")
     override var id: Int = 0
-    
     @ColumnInfo(name = "work_title")
     override var title: String? = null
-    
     @ColumnInfo(name = "work_description")
     override var description: String? = null
-    
     @ColumnInfo(name = "work_company")
     override var company: String? = null
-    
     @ColumnInfo(name = "work_location")
     override var location: String? = null
-    
     @ColumnInfo(name = "work_duration")
     override var duration: String? = null
-    
     @ColumnInfo(name = "work_logo_url")
     override var logoUrl: String? = null
 }

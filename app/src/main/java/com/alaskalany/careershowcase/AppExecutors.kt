@@ -26,7 +26,6 @@ package com.alaskalany.careershowcase
 
 import android.os.Handler
 import android.os.Looper
-
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
@@ -53,7 +52,7 @@ private constructor(
      * Main thread [Executor]
      */
     private val mainThreadExecutor: Executor
-                   ) {
+) {
     
     /**
      * App [Executor]s
@@ -64,7 +63,6 @@ private constructor(
      * @return DisK IO [Executor]
      */
     fun diskIO(): Executor {
-        
         return diskIoExecutor
     }
     
@@ -72,7 +70,6 @@ private constructor(
      * @return Network IO [Executor]
      */
     fun networkIO(): Executor {
-        
         return networkIoExecutor
     }
     
@@ -80,7 +77,6 @@ private constructor(
      * @return Main thread [Executor]
      */
     fun mainThread(): Executor {
-        
         return mainThreadExecutor
     }
     
@@ -106,7 +102,6 @@ private constructor(
          * @throws NullPointerException       if command is null
          */
         override fun execute(command: Runnable) {
-            
             mainThreadHandler.post(command)
         }
     }

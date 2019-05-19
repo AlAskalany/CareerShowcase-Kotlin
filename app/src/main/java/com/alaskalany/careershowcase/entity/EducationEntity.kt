@@ -38,28 +38,20 @@ class EducationEntity : Education {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "education_id")
     override var id: Int = 0
-    
     @ColumnInfo(name = "education_title")
     override var title: String? = null
-    
     @ColumnInfo(name = "education_degree")
     override var degree: String? = null
-    
     @ColumnInfo(name = "study_field")
     override var studyField: String? = null
-    
     @ColumnInfo(name = "education_description")
     override var description: String? = null
-    
     @ColumnInfo(name = "education_institution")
     override var institution: String? = null
-    
     @ColumnInfo(name = "education_location")
     override var location: String? = null
-    
     @ColumnInfo(name = "education_duration")
     override var duration: String? = null
-    
     @ColumnInfo(name = "education_logo_url")
     override var logoUrl: String? = null
 }

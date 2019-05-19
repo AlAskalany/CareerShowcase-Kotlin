@@ -48,23 +48,14 @@ import org.jetbrains.annotations.Contract
  * Use the [OverviewFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
 class OverviewFragment : Fragment(), ScrollToTop {
     
-    
-    private var param1: String? = null
-    
-    private var param2: String? = null
-    
     private var onOverviewFragmentInteractionListener: OnOverviewFragmentInteractionListener? = null
-    
     private var binding: FragmentOverviewBinding? = null
-    
     /**
      * @param uri
      */
     fun onButtonPressed(uri: Uri) {
-        
         if (onOverviewFragmentInteractionListener != null) {
             onOverviewFragmentInteractionListener!!.onOverviewFragmentInteraction(uri)
         }
@@ -74,7 +65,6 @@ class OverviewFragment : Fragment(), ScrollToTop {
      * @param context
      */
     override fun onAttach(context: Context) {
-        
         super.onAttach(context)
         registerListener(context)
     }
@@ -84,7 +74,6 @@ class OverviewFragment : Fragment(), ScrollToTop {
      */
     @Contract("null -> fail")
     private fun registerListener(context: Context?) {
-        
         if (context is OnOverviewFragmentInteractionListener) {
             onOverviewFragmentInteractionListener = context
         } else {
@@ -92,27 +81,7 @@ class OverviewFragment : Fragment(), ScrollToTop {
         }
     }
     
-    /**
-     * @param savedInstanceState
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        
-        super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            param1 = arguments!!.getString(ARG_PARAM1)
-            param2 = arguments!!.getString(ARG_PARAM2)
-        }
-    }
-    
-    /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     *
-     * @return
-     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false)
         binding!!.name = "Ahmed AlAskalany"
         binding!!.headline = "Software Engineer"
@@ -136,23 +105,17 @@ class OverviewFragment : Fragment(), ScrollToTop {
         return binding!!.root
     }
     
-    /**
-     * @param savedInstanceState
-     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        
         super.onActivityCreated(savedInstanceState)
         binding!!.executePendingBindings()
     }
     
     override fun onDetach() {
-        
         super.onDetach()
         unregisterListener()
     }
     
     private fun unregisterListener() {
-        
         onOverviewFragmentInteractionListener = null
     }
     
@@ -164,9 +127,6 @@ class OverviewFragment : Fragment(), ScrollToTop {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnOverviewFragmentInteractionListener {
         
@@ -176,28 +136,14 @@ class OverviewFragment : Fragment(), ScrollToTop {
     
     companion object {
         
-        
-        private val ARG_PARAM1 = "param1"
-        
-        private val ARG_PARAM2 = "param2"
-        
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         *
          * @return A new instance of fragment OverviewFragment.
          */
-        fun newInstance(param1: String, param2: String): OverviewFragment {
-            
-            val fragment = OverviewFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+        fun newInstance(): OverviewFragment {
+            return OverviewFragment()
         }
     }
 } // Required empty public constructor

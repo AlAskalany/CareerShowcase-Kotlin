@@ -56,7 +56,7 @@ class BottomNavigationManager
      * [BottomNavigationView]
      */
     private var navigation: BottomNavigationView?
-    ) : BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener,
+) : BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener,
         FragmentManager.OnBackStackChangedListener, OnBackPressed {
     
     /**
@@ -66,10 +66,8 @@ class BottomNavigationManager
     
     init {
         createFragments(fragments)
-        
         // Set the bottom navigation view
         setBottomNavigationView(navigation)
-        
         // listen to item selection and reselection from the bottom navigation view
         navigation!!.setOnNavigationItemSelectedListener(this)
         navigation!!.setOnNavigationItemReselectedListener(this)
@@ -79,7 +77,6 @@ class BottomNavigationManager
      * @param navigation [BottomNavigationView]
      */
     private fun setBottomNavigationView(navigation: BottomNavigationView?) {
-        
         this.navigation = navigation
     }
     
@@ -91,7 +88,7 @@ class BottomNavigationManager
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         // Replace current fragment with requested fragment
         when (menuItem.itemId) {
-            R.id.navigation_overview  -> {
+            R.id.navigation_overview -> {
                 replaceFragment(OVERVIEW)
                 return true
             }
@@ -99,15 +96,15 @@ class BottomNavigationManager
                 replaceFragment(EDUCATION)
                 return true
             }
-            R.id.navigation_work      -> {
+            R.id.navigation_work -> {
                 replaceFragment(WORK)
                 return true
             }
-            R.id.navigation_skills    -> {
+            R.id.navigation_skills -> {
                 replaceFragment(SKILLS)
                 return true
             }
-            R.id.navigation_contact   -> {
+            R.id.navigation_contact -> {
                 replaceFragment(CONTACT)
                 return true
             }
@@ -122,7 +119,6 @@ class BottomNavigationManager
      */
     @Throws(RuntimeException::class)
     private fun replaceFragment(navFragment: Int) {
-        
         val fragment = fragments.get(navFragment)
         if (fragment != null) {
             val transaction = activity.supportFragmentManager.beginTransaction()
@@ -142,21 +138,20 @@ class BottomNavigationManager
      * @param menuItem Bottom navigation menu item
      */
     override fun onNavigationItemReselected(menuItem: MenuItem) {
-        
         when (menuItem.itemId) {
-            R.id.navigation_overview  ->
+            R.id.navigation_overview ->
                 // Overview menu item reselected, scroll to the top of the overview fragment
                 scrollToFragmentTop(getFragment(OVERVIEW))
             R.id.navigation_education ->
                 // Education menu item reselected, scroll to the top of the education fragment
                 scrollToFragmentTop(getFragment(EDUCATION))
-            R.id.navigation_work      ->
+            R.id.navigation_work ->
                 // Work menu item reselected, scroll to the top of the work fragment
                 scrollToFragmentTop(getFragment(WORK))
-            R.id.navigation_skills    ->
+            R.id.navigation_skills ->
                 // Skills menu item reselected, scroll to the top of the skills fragment
                 scrollToFragmentTop(getFragment(SKILLS))
-            R.id.navigation_contact   ->
+            R.id.navigation_contact ->
                 // Contact menu item reselected, scroll to the top of the contact fragment
                 scrollToFragmentTop(getFragment(CONTACT))
         }
@@ -168,7 +163,6 @@ class BottomNavigationManager
      * @param fragment Bottom navigation fragment
      */
     private fun scrollToFragmentTop(fragment: ScrollToTop) {
-        
         fragment.top()
     }
     
@@ -178,7 +172,6 @@ class BottomNavigationManager
      * @return Bottom navigation fragment
      */
     private fun getFragment(fragmentId: Int): ScrollToTop {
-        
         return Objects.requireNonNull<ScrollToTop>(fragments.get(fragmentId))
     }
     
@@ -188,7 +181,6 @@ class BottomNavigationManager
      * @param freshStart Is this a fresh activity start
      */
     fun init(freshStart: Boolean) {
-        
         if (freshStart) {
             val fragment = fragments.get(OVERVIEW)
             if (fragment != null) {
@@ -201,26 +193,16 @@ class BottomNavigationManager
         }
     }
     
-    /**
-     * Called whenever the contents of the back stack change.
-     */
     override fun onBackStackChanged() {
         // TODO
         Toast.makeText(activity.applicationContext, "Backstack changed", Toast.LENGTH_SHORT).show()
     }
     
-    /**
-     * Handling back presses by replacing any fragment with the [OverviewFragment]
-     *
-     * @return true if back was pressed with a fragment other than [OverviewFragment] attached
-     */
     override fun onBackPressed(): Boolean {
         // If back was pressed with a fragment other than the overview fragment attached
         if (navigation!!.selectedItemId != R.id.navigation_overview) {
-            
             // Set the overview menu item in the bottom navigation view as selected
             navigation!!.menu.getItem(0).isChecked = true
-            
             // Attach the overview fragment
             replaceFragment(OVERVIEW)
             return true
@@ -231,37 +213,16 @@ class BottomNavigationManager
     
     companion object {
         
-        /**
-         * [OverviewFragment]
-         */
         private const val OVERVIEW = 0
-        
-        /**
-         * [EducationListFragment]
-         */
         private const val EDUCATION = 1
-        
-        /**
-         * [WorkListFragment]
-         */
         private const val WORK = 2
-        
-        /**
-         * [SkillListFragment]
-         */
         private const val SKILLS = 3
-        
-        /**
-         * [ContactListFragment]
-         */
         private const val CONTACT = 4
-        
         private fun createFragments(mFragments: SparseArrayCompat<ScrollToTop>) {
-            
-            mFragments.put(OVERVIEW, OverviewFragment())
-            mFragments.put(EDUCATION, EducationListFragment())
-            mFragments.put(WORK, WorkListFragment())
-            mFragments.put(SKILLS, SkillListFragment())
+            mFragments.put(OVERVIEW, OverviewFragment.newInstance())
+            mFragments.put(EDUCATION, EducationListFragment.newInstance(1))
+            mFragments.put(WORK, WorkListFragment.newInstance(1))
+            mFragments.put(SKILLS, SkillListFragment.newInstance(1))
             mFragments.put(CONTACT, ContactListFragment.newInstance(1))
         }
     }

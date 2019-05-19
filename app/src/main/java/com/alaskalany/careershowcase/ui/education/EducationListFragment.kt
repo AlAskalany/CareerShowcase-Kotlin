@@ -52,48 +52,21 @@ import com.alaskalany.careershowcase.viewmodel.EducationListViewModel
  */
 class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback {
     
+    private var binding: FragmentEducationListBinding? = null
+    private var adapter: EducationAdapter? = null
+    private var columnCount = 1
     override fun onClick(item: Education) {
         Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    private var binding: FragmentEducationListBinding? = null
-    
-    /**
-     * @return
-     */
-    /**
-     * @param adapter
-     */
-    protected var adapter: EducationAdapter? = null
-    
-    /**
-     * @return
-     */
-    /**
-     * @param mColumnCount
-     */
-    protected var columnCount = 1
-    
-    /**
-     * @param savedInstanceState
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
-        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
     
-    /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     *
-     * @return
-     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false)
         adapter = EducationAdapter(this)
         val context = binding!!.root.context
@@ -106,25 +79,11 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
         return binding!!.root
     }
     
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.  It is also useful for fragments that use
-     * [.setRetainInstance] to retain their instance,
-     * as this skillOnClickCallback tells the fragment when it is fully associated with
-     * the new activity instance.  This is called after [.onCreateView]
-     * and before [.onViewStateRestored].
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
-     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this).get(EducationListViewModel::class.java)
-        binding!!.educationListViewModel = _model
-        _model.educations.observe(this, Observer { pWorkEntities ->
+        val viewModel = ViewModelProviders.of(this).get(EducationListViewModel::class.java)
+        binding!!.educationListViewModel = viewModel
+        viewModel.educations.observe(this, Observer { pWorkEntities ->
             if (pWorkEntities != null) {
                 adapter!!.setEducationList(pWorkEntities)
             } else {
@@ -134,7 +93,6 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
     }
     
     override fun top() {
-        
         binding!!.listEducation.smoothScrollToPosition(0)
     }
     
@@ -142,14 +100,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
         
         
         protected val ARG_COLUMN_COUNT = "column-count"
-        
-        /**
-         * @param columnCount
-         *
-         * @return
-         */
         fun newInstance(columnCount: Int): EducationListFragment {
-            
             val fragment = EducationListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

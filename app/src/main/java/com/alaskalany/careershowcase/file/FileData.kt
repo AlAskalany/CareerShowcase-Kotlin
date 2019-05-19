@@ -43,15 +43,10 @@ object FileData {
     }
     
     private val educationLiveData = MediatorLiveData<List<EducationEntity>>()
-    
     private val skillsLiveData = MediatorLiveData<List<SkillEntity>>()
-    
     private val workLiveData = MediatorLiveData<List<WorkEntity>>()
-    
     private val contactsLiveData = MediatorLiveData<List<ContactEntity>>()
-    
     fun getEducationLiveData(application: Application): LiveData<List<EducationEntity>> {
-        
         if (educationLiveData.value == null) {
             loadEducation(application)
         }
@@ -59,7 +54,6 @@ object FileData {
     }
     
     private fun loadEducation(application: Application) {
-        
         val gson = Gson()
         val dataJson =
             gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
@@ -67,7 +61,6 @@ object FileData {
     }
     
     fun getSkillsLiveData(application: Application): LiveData<List<SkillEntity>> {
-        
         if (skillsLiveData.value == null) {
             loadSkills(application)
         }
@@ -75,7 +68,6 @@ object FileData {
     }
     
     private fun loadSkills(application: Application) {
-        
         val gson = Gson()
         val dataJson =
             gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
@@ -83,7 +75,6 @@ object FileData {
     }
     
     fun getWorkLiveData(application: Application): LiveData<List<WorkEntity>> {
-        
         if (workLiveData.value == null) {
             loadWork(application)
         }
@@ -91,7 +82,6 @@ object FileData {
     }
     
     private fun loadWork(application: Application) {
-        
         val gson = Gson()
         val dataJson =
             gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
@@ -99,7 +89,6 @@ object FileData {
     }
     
     fun getContactsLiveData(application: Application): LiveData<List<ContactEntity>> {
-        
         if (contactsLiveData.value == null) {
             loadContacts(application)
         }
@@ -107,7 +96,6 @@ object FileData {
     }
     
     private fun loadContacts(application: Application) {
-        
         val gson = Gson()
         val dataJson =
             gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)

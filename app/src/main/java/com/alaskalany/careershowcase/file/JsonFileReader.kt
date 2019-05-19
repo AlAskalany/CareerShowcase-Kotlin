@@ -34,7 +34,6 @@ import java.io.StringWriter
 object JsonFileReader {
     
     fun loadJSONFromAsset(context: Context): String {
-        
         val `is` = context.resources.openRawResource(R.raw.data)
         val writer = StringWriter()
         val buffer = CharArray(1024)

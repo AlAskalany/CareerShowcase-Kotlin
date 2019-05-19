@@ -56,18 +56,10 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
     }
     
     private var binding: FragmentWorkListBinding? = null
-    
-    /**
-     * @return
-     */
     /**
      * @param adapter
      */
     protected var adapter: WorkAdapter? = null
-    
-    /**
-     * @return
-     */
     /**
      * @param mColumnCount
      */
@@ -77,7 +69,6 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
@@ -92,7 +83,6 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false)
         adapter = WorkAdapter(this)
         val context = binding!!.root.context
@@ -119,7 +109,6 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        
         super.onActivityCreated(savedInstanceState)
         val _model = ViewModelProviders.of(this).get(WorkListViewModel::class.java)
         binding!!.workListViewModel = _model
@@ -133,7 +122,6 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
     }
     
     override fun top() {
-        
         binding!!.listWork.smoothScrollToPosition(0)
     }
     
@@ -141,14 +129,12 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
         
         
         protected val ARG_COLUMN_COUNT = "column-count"
-        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): WorkListFragment {
-            
             val fragment = WorkListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

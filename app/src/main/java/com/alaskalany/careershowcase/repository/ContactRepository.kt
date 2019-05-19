@@ -31,27 +31,22 @@ import com.alaskalany.careershowcase.entity.ContactEntity
 class ContactRepository(private val dataRepository: DataRepository) {
     
     var observableContacts: MediatorLiveData<List<ContactEntity>>? = null
-    
     fun insertAll(contactEntities: List<ContactEntity>) {
     }
     
     fun load(contactId: Int): LiveData<ContactEntity> {
-        
         return dataRepository.database.contactDao().load(contactId)
     }
     
     fun loadSync(contactId: Int): ContactEntity {
-        
         return dataRepository.database.contactDao().loadSync(contactId)
     }
     
     fun loadAll(): LiveData<List<ContactEntity>> {
-        
         return dataRepository.database.contactDao().loadAll()
     }
     
     fun getContacts(): MediatorLiveData<List<ContactEntity>>? {
-        
         return observableContacts
     }
 }

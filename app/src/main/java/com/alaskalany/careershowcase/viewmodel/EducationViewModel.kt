@@ -35,16 +35,13 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.repository.DataRepository
 
 class EducationViewModel(application: Application, dataRepository: DataRepository, private val educationId: Int) :
-    AndroidViewModel(application) {
+        AndroidViewModel(application) {
     
     val observableEducation: LiveData<EducationEntity> = dataRepository.educationRepository.load(educationId)
     
     var education = ObservableField<EducationEntity>()
     
-    fun setEducation(education: EducationEntity) {
-        
-        this.education.set(education)
-    }
+    fun setEducation(education: EducationEntity) = this.education.set(education)
     
     /**
      * A creator is used to inject the product ID into the ViewModel
@@ -54,17 +51,11 @@ class EducationViewModel(application: Application, dataRepository: DataRepositor
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
     class Factory(private val mApplication: Application, private val mEducationId: Int) :
-        ViewModelProvider.NewInstanceFactory() {
+            ViewModelProvider.NewInstanceFactory() {
         
-        private val mRepository: DataRepository
+        private val mRepository: DataRepository = (mApplication as CareerShowcaseApp).repository!!
         
-        init {
-            mRepository = (mApplication as CareerShowcaseApp).repository!!
-        }
-        
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            
-            return EducationViewModel(mApplication, mRepository, mEducationId) as T
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T =
+            EducationViewModel(mApplication, mRepository, mEducationId) as T
     }
 }

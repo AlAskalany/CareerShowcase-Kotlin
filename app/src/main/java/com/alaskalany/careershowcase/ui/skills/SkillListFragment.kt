@@ -58,18 +58,10 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
     }
     
     private var mBinding: FragmentSkillListBinding? = null
-    
-    /**
-     * @return
-     */
     /**
      * @param adapter
      */
     protected var adapter: SkillAdapter? = null
-    
-    /**
-     * @return
-     */
     /**
      * @param mColumnCount
      */
@@ -79,7 +71,6 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
@@ -94,7 +85,6 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false)
         adapter = SkillAdapter(this)
         val context = mBinding!!.root.context
@@ -124,7 +114,6 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        
         super.onActivityCreated(savedInstanceState)
         val _model = ViewModelProviders.of(this).get(SkillListViewModel::class.java)
         mBinding!!.skillListViewModel = _model
@@ -138,7 +127,6 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
     }
     
     override fun top() {
-        
         mBinding!!.listSkill.smoothScrollToPosition(0)
     }
     
@@ -146,14 +134,12 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
         
         
         protected val ARG_COLUMN_COUNT = "column-count"
-        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): SkillListFragment {
-            
             val fragment = SkillListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

@@ -35,16 +35,13 @@ import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.repository.DataRepository
 
 class SkillViewModel(application: Application, dataRepository: DataRepository, private val skillId: Int) :
-    AndroidViewModel(application) {
+        AndroidViewModel(application) {
     
     val observableSkill: LiveData<SkillEntity> = dataRepository.skillRepository.load(skillId)
     
     var skill = ObservableField<SkillEntity>()
     
-    fun setSkill(skill: SkillEntity) {
-        
-        this.skill.set(skill)
-    }
+    fun setSkill(skill: SkillEntity) = this.skill.set(skill)
     
     /**
      * A creator is used to inject the product ID into the ViewModel
@@ -54,17 +51,11 @@ class SkillViewModel(application: Application, dataRepository: DataRepository, p
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
     class Factory(private val mApplication: Application, private val mSkillId: Int) :
-        ViewModelProvider.NewInstanceFactory() {
+            ViewModelProvider.NewInstanceFactory() {
         
-        private val mRepository: DataRepository
+        private val mRepository: DataRepository = (mApplication as CareerShowcaseApp).repository!!
         
-        init {
-            mRepository = (mApplication as CareerShowcaseApp).repository!!
-        }
-        
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            
-            return SkillViewModel(mApplication, mRepository, mSkillId) as T
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T =
+            SkillViewModel(mApplication, mRepository, mSkillId) as T
     }
 }

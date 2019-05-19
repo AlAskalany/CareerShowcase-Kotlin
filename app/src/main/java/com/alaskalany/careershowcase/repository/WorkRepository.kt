@@ -31,22 +31,18 @@ import com.alaskalany.careershowcase.entity.WorkEntity
 class WorkRepository(private val dataRepository: DataRepository) {
     
     var works: MediatorLiveData<List<WorkEntity>>? = null
-    
     fun insertAll(workEntities: List<WorkEntity>) {
     }
     
     fun load(workId: Int): LiveData<WorkEntity> {
-        
         return dataRepository.database.workDao().load(workId)
     }
     
     fun loadSync(workId: Int): WorkEntity {
-        
         return dataRepository.database.workDao().loadSync(workId)
     }
     
     fun loadAll(): LiveData<List<WorkEntity>> {
-        
         return dataRepository.database.workDao().loadAll()
     }
 }

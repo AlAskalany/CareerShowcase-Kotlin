@@ -29,7 +29,6 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.entity.WorkEntity
 import org.jetbrains.annotations.Contract
-
 import java.util.*
 
 object DataGenerator {
@@ -37,28 +36,24 @@ object DataGenerator {
     @JvmStatic
     @Contract(pure = true)
     fun generateContacts(): List<ContactEntity> {
-        
         return ContactContent.ITEMS
     }
     
     @JvmStatic
     @Contract(pure = true)
     fun generateEducations(): List<EducationEntity> {
-        
         return EducationContent.ITEMS
     }
     
     @JvmStatic
     @Contract(pure = true)
     fun generateSkills(): List<SkillEntity> {
-        
         return SkillContent.ITEMS
     }
     
     @JvmStatic
     @Contract(pure = true)
     fun generateWorks(): List<WorkEntity> {
-        
         return WorkContent.ITEMS
     }
     
@@ -75,13 +70,11 @@ object DataGenerator {
          * An array of sample (contact) items.
          */
         val ITEMS: MutableList<ContactEntity> = ArrayList()
-        
         /**
          * A map of sample (contact) items, by ID.
          */
-        val ITEM_MAP: MutableMap<Int, ContactEntity> = HashMap()
-        
-        private val COUNT = 25
+        private val ITEM_MAP: MutableMap<Int, ContactEntity> = HashMap()
+        private const val COUNT = 25
         
         init {
             // Add some sample items.
@@ -91,18 +84,15 @@ object DataGenerator {
         }
         
         private fun addItem(item: ContactEntity) {
-            
             ITEMS.add(item)
             ITEM_MAP[item.id] = item
         }
         
         private fun createContactItem(position: Int): ContactEntity {
-            
             return ContactEntity(position, "Item $position", makeDetails(position))
         }
         
         private fun makeDetails(position: Int): String {
-            
             val builder = StringBuilder()
             builder.append("Details about Item: ").append(position)
             for (i in 0 until position) {
@@ -125,8 +115,7 @@ object DataGenerator {
          * An array of sample (education) items.
          */
         val ITEMS: MutableList<EducationEntity> = ArrayList()
-        
-        private val COUNT = 25
+        private const val COUNT = 25
         
         init {
             // Add some sample items.
@@ -136,12 +125,10 @@ object DataGenerator {
         }
         
         private fun addItem(item: EducationEntity) {
-            
             ITEMS.add(item)
         }
         
         private fun createEducationItem(position: Int): EducationEntity {
-            
             val educationEntity = EducationEntity()
             educationEntity.id = position
             educationEntity.title = "Education $position"
@@ -153,7 +140,6 @@ object DataGenerator {
         }
         
         private fun makeDetails(position: Int): String {
-            
             val builder = StringBuilder()
             builder.append("Details about Education: ").append(position)
             for (i in 0 until position) {
@@ -176,8 +162,7 @@ object DataGenerator {
          * An array of sample (skill) items.
          */
         val ITEMS: MutableList<SkillEntity> = ArrayList()
-        
-        private val COUNT = 25
+        private const val COUNT = 25
         
         init {
             // Add some sample items.
@@ -187,12 +172,10 @@ object DataGenerator {
         }
         
         private fun addItem(item: SkillEntity) {
-            
             ITEMS.add(item)
         }
         
         private fun createSkillItem(position: Int): SkillEntity {
-            
             val skillEntity = SkillEntity()
             skillEntity.id = position
             skillEntity.title = "Skill $position"
@@ -201,7 +184,6 @@ object DataGenerator {
         }
         
         private fun makeLevel(): Int {
-            
             return Random().nextInt(5)
         }
     }
@@ -219,8 +201,7 @@ object DataGenerator {
          * An array of sample (contact) items.
          */
         val ITEMS: MutableList<WorkEntity> = ArrayList()
-        
-        private val COUNT = 25
+        private const val COUNT = 25
         
         init {
             // Add some sample items.
@@ -230,12 +211,10 @@ object DataGenerator {
         }
         
         private fun addItem(item: WorkEntity) {
-            
             ITEMS.add(item)
         }
         
         private fun createWorkItem(position: Int): WorkEntity {
-            
             val workEntity = WorkEntity()
             workEntity.id = position
             workEntity.title = "Work $position"
@@ -244,7 +223,6 @@ object DataGenerator {
         }
         
         private fun makeDetails(position: Int): String {
-            
             val builder = StringBuilder()
             builder.append("Details about Work: ").append(position)
             for (i in 0 until position) {

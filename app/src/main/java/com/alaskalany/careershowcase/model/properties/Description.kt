@@ -26,11 +26,5 @@ package com.alaskalany.careershowcase.model.properties
 
 interface Description {
     
-    /**
-     * @return
-     */
-    /**
-     * @param description
-     */
     var description: String?
 }

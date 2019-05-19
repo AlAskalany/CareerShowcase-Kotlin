@@ -27,7 +27,6 @@ package com.alaskalany.careershowcase.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.alaskalany.careershowcase.CareerShowcaseApp
@@ -35,16 +34,13 @@ import com.alaskalany.careershowcase.entity.WorkEntity
 import com.alaskalany.careershowcase.repository.DataRepository
 
 class WorkViewModel(application: Application, dataRepository: DataRepository, private val workId: Int) :
-    AndroidViewModel(application) {
+        AndroidViewModel(application) {
     
-    val observableWork: LiveData<WorkEntity> = dataRepository.workRepository.load(workId)
+    val observableWork = dataRepository.workRepository.load(workId)
     
     var work = ObservableField<WorkEntity>()
     
-    fun setWork(product: WorkEntity) {
-        
-        this.work.set(product)
-    }
+    fun setWork(product: WorkEntity) = this.work.set(product)
     
     /**
      * A creator is used to inject the product ID into the ViewModel
@@ -54,17 +50,11 @@ class WorkViewModel(application: Application, dataRepository: DataRepository, pr
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
     class Factory(private val application: Application, private val workId: Int) :
-        ViewModelProvider.NewInstanceFactory() {
+            ViewModelProvider.NewInstanceFactory() {
         
-        private val repository: DataRepository
+        private val repository: DataRepository = (application as CareerShowcaseApp).repository!!
         
-        init {
-            repository = (application as CareerShowcaseApp).repository!!
-        }
-        
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            
-            return WorkViewModel(application, repository, workId) as T
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T =
+            WorkViewModel(application, repository, workId) as T
     }
 }

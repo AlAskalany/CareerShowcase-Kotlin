@@ -26,11 +26,5 @@ package com.alaskalany.careershowcase.model.properties
 
 interface Id {
     
-    /**
-     * @return
-     */
-    /**
-     * @param id
-     */
     var id: Int
 }

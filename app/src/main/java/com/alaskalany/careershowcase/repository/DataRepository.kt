@@ -36,7 +36,6 @@ class DataRepository private constructor(val database: AppDatabase) {
     val workRepository = WorkRepository(this)
     val skillRepository = SkillRepository(this)
     val educationRepository = EducationRepository(this)
-    
     private val isDatabaseCreated: Boolean?
         get() = database.databaseCreated.value
     
@@ -48,7 +47,8 @@ class DataRepository private constructor(val database: AppDatabase) {
             }
         }
         educationRepository.observableEducations = MediatorLiveData<List<EducationEntity>>()
-        educationRepository.observableEducations!!.addSource<List<EducationEntity>>(educationRepository.loadAll()) { educationEntities ->
+        educationRepository.observableEducations!!.addSource<List<EducationEntity>>(
+            educationRepository.loadAll()) { educationEntities ->
             if (isDatabaseCreated != null) {
                 educationRepository.observableEducations!!.postValue(educationEntities)
             }
@@ -60,7 +60,8 @@ class DataRepository private constructor(val database: AppDatabase) {
             }
         }
         contactRepository.observableContacts = MediatorLiveData<List<ContactEntity>>()
-        contactRepository.observableContacts!!.addSource<List<ContactEntity>>(contactRepository.loadAll()) { contactEntities ->
+        contactRepository.observableContacts!!.addSource<List<ContactEntity>>(
+            contactRepository.loadAll()) { contactEntities ->
             if (isDatabaseCreated != null) {
                 contactRepository.observableContacts!!.postValue(contactEntities)
             }
@@ -70,9 +71,7 @@ class DataRepository private constructor(val database: AppDatabase) {
     companion object {
         
         private var INSTANCE: DataRepository? = null
-        
         fun getInstance(database: AppDatabase): DataRepository? {
-            
             if (INSTANCE == null) {
                 synchronized(DataRepository::class.java) {
                     if (INSTANCE == null) {
