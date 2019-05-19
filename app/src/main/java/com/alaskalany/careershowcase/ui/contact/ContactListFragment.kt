@@ -52,36 +52,15 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel
  */
 class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
     
+    private var binding: FragmentContactListBinding? = null
+    
+    private var adapter: ContactAdapter? = null
+    
+    private var columnCount = 1
+    
     override fun onClick(item: Contact) {
         Toast.makeText(this@ContactListFragment.context, "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show()
     }
-    
-    /**
-     *
-     */
-    private var binding: FragmentContactListBinding? = null
-    
-    /**
-     *
-     */
-    /**
-     * @return
-     */
-    /**
-     * @param adapter
-     */
-    protected var adapter: ContactAdapter? = null
-    
-    /**
-     *
-     */
-    /**
-     * @return
-     */
-    /**
-     * @param mColumnCount
-     */
-    protected var columnCount = 1
     
     /**
      * @param savedInstanceState
@@ -131,9 +110,9 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
-        binding!!.contactListViewModel = _model
-        _model.contacts.observe(this, Observer { contactEntities ->
+        val viewModel = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
+        binding!!.contactListViewModel = viewModel
+        viewModel.contacts.observe(this, Observer { contactEntities ->
             if (contactEntities != null) {
                 adapter!!.setContactList(contactEntities)
             } else {
@@ -149,10 +128,7 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
     
     companion object {
         
-        /**
-         *
-         */
-        protected val ARG_COLUMN_COUNT = "column-count"
+        private const val ARG_COLUMN_COUNT: String = "column-count"
         
         /**
          * @param columnCount

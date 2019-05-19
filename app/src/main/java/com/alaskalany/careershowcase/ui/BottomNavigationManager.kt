@@ -262,7 +262,7 @@ class BottomNavigationManager
             mFragments.put(EDUCATION, EducationListFragment())
             mFragments.put(WORK, WorkListFragment())
             mFragments.put(SKILLS, SkillListFragment())
-            mFragments.put(CONTACT, ContactListFragment())
+            mFragments.put(CONTACT, ContactListFragment.newInstance(1))
         }
     }
 }
