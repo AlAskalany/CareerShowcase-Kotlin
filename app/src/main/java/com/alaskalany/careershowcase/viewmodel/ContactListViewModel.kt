@@ -44,7 +44,7 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
         get() = observableContacts
     
     init {
-    
+        
         // set by default null, until we get data from the database.
         observableContacts.value = null
         // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().contactRepository.getContacts();

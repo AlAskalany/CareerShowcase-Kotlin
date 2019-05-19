@@ -57,9 +57,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
         Toast.makeText(this@SkillListFragment.context, "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    
     private var mBinding: FragmentSkillListBinding? = null
-    
     
     /**
      * @return
@@ -68,7 +66,6 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @param adapter
      */
     protected var adapter: SkillAdapter? = null
-    
     
     /**
      * @return

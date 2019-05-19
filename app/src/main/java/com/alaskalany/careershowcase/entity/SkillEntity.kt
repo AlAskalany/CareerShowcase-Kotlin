@@ -47,7 +47,6 @@ class SkillEntity : Skill {
     @ColumnInfo(name = "skill_id")
     override var id: Int = 0
     
-    
     /**
      * @return
      */

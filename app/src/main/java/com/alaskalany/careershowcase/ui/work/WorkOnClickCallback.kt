@@ -26,7 +26,6 @@ package com.alaskalany.careershowcase.ui.work
 
 import com.alaskalany.careershowcase.model.Work
 
-
 interface WorkOnClickCallback {
     
     /**

@@ -44,7 +44,6 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.entity.WorkEntity
 
-
 @Database(
     version = 6, entities = arrayOf(ContactEntity::class, EducationEntity::class, SkillEntity::class, WorkEntity::class)
          )
@@ -89,12 +88,10 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
     
-    
     private fun setDatabaseCreated() {
         
         isDatabaseCreated.postValue(true)
     }
-    
     
     private class PopulateDatabaseAsync
     /**
@@ -105,9 +102,7 @@ abstract class AppDatabase : RoomDatabase() {
         
         private val educationDao: EducationDao
         
-        
         private val workDao: WorkDao
-        
         
         private val skillDao: SkillDao
         
@@ -149,7 +144,6 @@ abstract class AppDatabase : RoomDatabase() {
         
         @VisibleForTesting
         val DATABASE_NAME = "app-db"
-        
         
         private var INSTANCE: AppDatabase? = null
         
@@ -225,7 +219,6 @@ abstract class AppDatabase : RoomDatabase() {
                     }
                 }).addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build()
         }
-        
         
         private fun addDelay() {
             

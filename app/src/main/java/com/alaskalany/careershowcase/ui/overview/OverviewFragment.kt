@@ -37,6 +37,7 @@ import com.alaskalany.careershowcase.GlideApp
 import com.alaskalany.careershowcase.R
 import com.alaskalany.careershowcase.databinding.FragmentOverviewBinding
 import com.alaskalany.careershowcase.ui.ScrollToTop
+import com.alaskalany.careershowcase.ui.overview.OverviewFragment.OnOverviewFragmentInteractionListener
 import org.jetbrains.annotations.Contract
 
 /**
@@ -53,12 +54,9 @@ class OverviewFragment : Fragment(), ScrollToTop {
     
     private var param1: String? = null
     
-    
     private var param2: String? = null
     
-    
     private var onOverviewFragmentInteractionListener: OnOverviewFragmentInteractionListener? = null
-    
     
     private var binding: FragmentOverviewBinding? = null
     
@@ -147,13 +145,11 @@ class OverviewFragment : Fragment(), ScrollToTop {
         binding!!.executePendingBindings()
     }
     
-    
     override fun onDetach() {
         
         super.onDetach()
         unregisterListener()
     }
-    
     
     private fun unregisterListener() {
         
@@ -182,7 +178,6 @@ class OverviewFragment : Fragment(), ScrollToTop {
         
         
         private val ARG_PARAM1 = "param1"
-        
         
         private val ARG_PARAM2 = "param2"
         

@@ -55,9 +55,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
         Toast.makeText(this@WorkListFragment.context, "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    
     private var binding: FragmentWorkListBinding? = null
-    
     
     /**
      * @return
@@ -66,7 +64,6 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @param adapter
      */
     protected var adapter: WorkAdapter? = null
-    
     
     /**
      * @return

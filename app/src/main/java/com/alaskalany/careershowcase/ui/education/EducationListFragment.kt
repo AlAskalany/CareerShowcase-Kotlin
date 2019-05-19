@@ -56,9 +56,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
         Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    
     private var binding: FragmentEducationListBinding? = null
-    
     
     /**
      * @return
@@ -67,7 +65,6 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * @param adapter
      */
     protected var adapter: EducationAdapter? = null
-    
     
     /**
      * @return
