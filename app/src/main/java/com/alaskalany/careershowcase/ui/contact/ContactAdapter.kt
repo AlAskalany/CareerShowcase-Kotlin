@@ -46,7 +46,7 @@ import com.alaskalany.careershowcase.entity.ContactEntity
  */
 class ContactAdapter
 /**
- * @param callback Callback for click on Contact items
+ * @param contactOnClickCallback Callback for click on Contact items
  */
     (
     /**
@@ -117,9 +117,7 @@ class ContactAdapter
         
         holder.binding.contact = contactEntities!![position]
         
-        val title = contactEntities!![position].title
-        
-        when (title) {
+        when (contactEntities!![position].title) {
             "E-mail" -> holder.binding.textViewContactDescription.autoLinkMask = Linkify.EMAIL_ADDRESSES
             "Mobile" -> holder.binding.textViewContactDescription.autoLinkMask = Linkify.PHONE_NUMBERS
             "Skype"  -> holder.binding.textViewContactDescription.setTextIsSelectable(true)
