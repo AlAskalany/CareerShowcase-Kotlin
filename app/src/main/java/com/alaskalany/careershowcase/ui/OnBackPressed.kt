@@ -24,9 +24,7 @@
 
 package com.alaskalany.careershowcase.ui
 
-/**
- *
- */
+
 interface OnBackPressed {
     
     /**

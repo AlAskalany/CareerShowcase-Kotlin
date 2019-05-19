@@ -49,15 +49,11 @@ class ContactAdapter
  * @param contactOnClickCallback Callback for click on Contact items
  */
     (
-    /**
-     *
-     */
+    
     private val contactOnClickCallback: ContactOnClickCallback
     ) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
     
-    /**
-     *
-     */
+    
     private var contactEntities: List<ContactEntity>? = null
     
     /**
@@ -241,9 +237,7 @@ class ContactAdapter
      * @param binding binding for the FragmentContact layout
      */
     internal constructor(
-        /**
-         *
-         */
+        
         val binding: FragmentContactBinding
                         ) : RecyclerView.ViewHolder(binding.root)
 }

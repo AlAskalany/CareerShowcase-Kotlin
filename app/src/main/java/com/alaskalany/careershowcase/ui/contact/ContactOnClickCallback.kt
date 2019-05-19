@@ -26,9 +26,7 @@ package com.alaskalany.careershowcase.ui.contact
 
 import com.alaskalany.careershowcase.model.Contact
 
-/**
- *
- */
+
 interface ContactOnClickCallback {
     
     /**

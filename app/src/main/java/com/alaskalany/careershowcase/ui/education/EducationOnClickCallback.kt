@@ -26,9 +26,7 @@ package com.alaskalany.careershowcase.ui.education
 
 import com.alaskalany.careershowcase.model.Education
 
-/**
- *
- */
+
 interface EducationOnClickCallback {
     
     /**

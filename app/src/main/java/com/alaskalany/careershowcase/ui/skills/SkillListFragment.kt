@@ -57,14 +57,10 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
         Toast.makeText(this@SkillListFragment.context, "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    /**
-     *
-     */
+    
     private var mBinding: FragmentSkillListBinding? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -73,9 +69,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      */
     protected var adapter: SkillAdapter? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -153,9 +147,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
     
     companion object {
         
-        /**
-         *
-         */
+        
         protected val ARG_COLUMN_COUNT = "column-count"
         
         /**

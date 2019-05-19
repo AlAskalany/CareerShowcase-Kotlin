@@ -55,14 +55,10 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
         Toast.makeText(this@WorkListFragment.context, "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    /**
-     *
-     */
+    
     private var binding: FragmentWorkListBinding? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -71,9 +67,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      */
     protected var adapter: WorkAdapter? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -148,9 +142,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
     
     companion object {
         
-        /**
-         *
-         */
+        
         protected val ARG_COLUMN_COUNT = "column-count"
         
         /**

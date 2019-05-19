@@ -48,15 +48,11 @@ class SkillAdapter
  * @param skillOnClickCallback Listener to clicks on Skill items
  */
     (
-    /**
-     *
-     */
+    
     private val skillOnClickCallback: SkillOnClickCallback
     ) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
     
-    /**
-     *
-     */
+    
     private var skillEntities: List<SkillEntity>? = null
     
     /**
@@ -229,9 +225,7 @@ class SkillAdapter
      * @param binding binding for the FragmentSkill layout
      */
     internal constructor(
-        /**
-         *
-         */
+        
         val binding: FragmentSkillBinding
                         ) : RecyclerView.ViewHolder(binding.root)
 }

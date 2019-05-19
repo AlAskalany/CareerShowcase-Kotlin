@@ -24,13 +24,9 @@
 
 package com.alaskalany.careershowcase.ui
 
-/**
- *
- */
+
 interface ScrollToTop {
     
-    /**
-     *
-     */
+    
     fun top()
 }

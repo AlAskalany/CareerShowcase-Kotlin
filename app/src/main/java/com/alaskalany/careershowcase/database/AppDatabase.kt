@@ -44,17 +44,13 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.entity.WorkEntity
 
-/**
- *
- */
+
 @Database(
     version = 6, entities = arrayOf(ContactEntity::class, EducationEntity::class, SkillEntity::class, WorkEntity::class)
          )
 abstract class AppDatabase : RoomDatabase() {
     
-    /**
-     *
-     */
+    
     private val isDatabaseCreated = MutableLiveData<Boolean>()
     
     /**
@@ -93,36 +89,26 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
     
-    /**
-     *
-     */
+    
     private fun setDatabaseCreated() {
         
         isDatabaseCreated.postValue(true)
     }
     
-    /**
-     *
-     */
+    
     private class PopulateDatabaseAsync
     /**
      * @param pInstance
      */
         (pInstance: AppDatabase) : AsyncTask<Void, Void, ViewOutlineProvider>() {
         
-        /**
-         *
-         */
+        
         private val educationDao: EducationDao
         
-        /**
-         *
-         */
+        
         private val workDao: WorkDao
         
-        /**
-         *
-         */
+        
         private val skillDao: SkillDao
         
         init {
@@ -160,19 +146,13 @@ abstract class AppDatabase : RoomDatabase() {
     
     companion object {
         
-        /**
-         *
-         */
+        
         @VisibleForTesting
         val DATABASE_NAME = "app-db"
         
-        /**
-         *
-         */
+        
         private var INSTANCE: AppDatabase? = null
-        /**
-         *
-         */
+        
         internal var roomDatabaseCallback: RoomDatabase.Callback = object : RoomDatabase.Callback() {
             
             /**
@@ -246,9 +226,7 @@ abstract class AppDatabase : RoomDatabase() {
                 }).addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build()
         }
         
-        /**
-         *
-         */
+        
         private fun addDelay() {
             
             try {

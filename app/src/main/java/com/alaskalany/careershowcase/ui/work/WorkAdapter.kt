@@ -48,15 +48,11 @@ class WorkAdapter
  * @param workOnClickCallback Listener to clicks on Work items
  */
     (
-    /**
-     *
-     */
+    
     private val workOnClickCallback: WorkOnClickCallback
     ) : RecyclerView.Adapter<WorkAdapter.ViewHolder>() {
     
-    /**
-     *
-     */
+    
     private var workEntities: List<WorkEntity>? = null
     
     /**
@@ -228,9 +224,7 @@ class WorkAdapter
      * @param binding binding for the FragmentWork layout
      */
     internal constructor(
-        /**
-         *
-         */
+        
         val binding: FragmentWorkBinding
                         ) : RecyclerView.ViewHolder(binding.root)
 }

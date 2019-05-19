@@ -47,29 +47,19 @@ import org.jetbrains.annotations.Contract
  * Use the [OverviewFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-/**
- *
- */
+
 class OverviewFragment : Fragment(), ScrollToTop {
     
-    /**
-     *
-     */
+    
     private var param1: String? = null
     
-    /**
-     *
-     */
+    
     private var param2: String? = null
     
-    /**
-     *
-     */
+    
     private var onOverviewFragmentInteractionListener: OnOverviewFragmentInteractionListener? = null
     
-    /**
-     *
-     */
+    
     private var binding: FragmentOverviewBinding? = null
     
     /**
@@ -157,18 +147,14 @@ class OverviewFragment : Fragment(), ScrollToTop {
         binding!!.executePendingBindings()
     }
     
-    /**
-     *
-     */
+    
     override fun onDetach() {
         
         super.onDetach()
         unregisterListener()
     }
     
-    /**
-     *
-     */
+    
     private fun unregisterListener() {
         
         onOverviewFragmentInteractionListener = null
@@ -194,14 +180,10 @@ class OverviewFragment : Fragment(), ScrollToTop {
     
     companion object {
         
-        /**
-         *
-         */
+        
         private val ARG_PARAM1 = "param1"
         
-        /**
-         *
-         */
+        
         private val ARG_PARAM2 = "param2"
         
         /**

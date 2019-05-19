@@ -48,15 +48,11 @@ class EducationAdapter
  * @param educationOnClickCallback Listener to clicks on Education items
  */
     (
-    /**
-     *
-     */
+    
     private val educationOnClickCallback: EducationOnClickCallback
     ) : RecyclerView.Adapter<EducationAdapter.ViewHolder>() {
     
-    /**
-     *
-     */
+    
     private var educationEntities: List<EducationEntity>? = null
     
     /**
@@ -229,9 +225,7 @@ class EducationAdapter
      * @param binding binding for the FragmentEducation layout
      */
     internal constructor(
-        /**
-         *
-         */
+        
         val binding: FragmentEducationBinding
                         ) : RecyclerView.ViewHolder(binding.root)
 }

@@ -56,14 +56,10 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
         Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show()
     }
     
-    /**
-     *
-     */
+    
     private var binding: FragmentEducationListBinding? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -72,9 +68,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      */
     protected var adapter: EducationAdapter? = null
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -149,9 +143,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
     
     companion object {
         
-        /**
-         *
-         */
+        
         protected val ARG_COLUMN_COUNT = "column-count"
         
         /**

@@ -26,9 +26,7 @@ package com.alaskalany.careershowcase.ui.skills
 
 import com.alaskalany.careershowcase.model.Skill
 
-/**
- *
- */
+
 interface SkillOnClickCallback {
     
     /**

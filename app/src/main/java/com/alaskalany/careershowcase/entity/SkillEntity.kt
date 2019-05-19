@@ -32,15 +32,11 @@ import com.alaskalany.careershowcase.model.Skill
 /**
  * A skill item representing a piece of description.
  */
-/**
- *
- */
+
 @Entity(tableName = "skills_table")
 class SkillEntity : Skill {
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */
@@ -51,9 +47,7 @@ class SkillEntity : Skill {
     @ColumnInfo(name = "skill_id")
     override var id: Int = 0
     
-    /**
-     *
-     */
+    
     /**
      * @return
      */

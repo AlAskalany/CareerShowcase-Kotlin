@@ -26,7 +26,5 @@ package com.alaskalany.careershowcase.model
 
 import com.alaskalany.careershowcase.model.properties.*
 
-/**
- *
- */
+
 interface Education : Id, Title, Description, Location, Duration, Degree, StudyField, Institution, PhotoUrl
