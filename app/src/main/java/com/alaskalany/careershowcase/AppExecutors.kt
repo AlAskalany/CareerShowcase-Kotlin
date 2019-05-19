@@ -36,9 +36,9 @@ import java.util.concurrent.RejectedExecutionException
  */
 class AppExecutors
 /**
- * @param diskIO     Disk IO [Executor]
- * @param networkIO  Network IO [Executor]
- * @param mainThread Main thread [Executor]
+ * @param diskIoExecutor     Disk IO [Executor]
+ * @param networkIoExecutor  Network IO [Executor]
+ * @param mainThreadExecutor Main thread [Executor]
  */
 private constructor(
     /**
