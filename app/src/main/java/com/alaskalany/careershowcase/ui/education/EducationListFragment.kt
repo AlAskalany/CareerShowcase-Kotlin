@@ -24,7 +24,6 @@
 
 package com.alaskalany.careershowcase.ui.education
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +37,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alaskalany.careershowcase.R
 import com.alaskalany.careershowcase.databinding.FragmentEducationListBinding
-import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.model.Education
 import com.alaskalany.careershowcase.ui.ScrollToTop
 import com.alaskalany.careershowcase.viewmodel.EducationListViewModel
@@ -84,15 +82,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * @param mColumnCount
      */
     protected var columnCount = 1
-
-    /**
-     * @param context
-     */
-    override fun onAttach(context: Context?) {
-
-        super.onAttach(context)
-    }
-
+    
     /**
      * @param savedInstanceState
      */
@@ -154,15 +144,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
                     binding!!.executePendingBindings()
                 })
     }
-
-    /**
-     *
-     */
-    override fun onDetach() {
-
-        super.onDetach()
-    }
-
+    
     override fun top() {
 
         binding!!.listEducation.smoothScrollToPosition(0)

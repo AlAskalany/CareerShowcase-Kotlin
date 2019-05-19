@@ -24,7 +24,6 @@
 
 package com.alaskalany.careershowcase.ui.work
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +36,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alaskalany.careershowcase.R
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding
-import com.alaskalany.careershowcase.entity.WorkEntity
 import com.alaskalany.careershowcase.model.Work
 import com.alaskalany.careershowcase.ui.ScrollToTop
 import com.alaskalany.careershowcase.viewmodel.WorkListViewModel
@@ -83,15 +81,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @param mColumnCount
      */
     protected var columnCount = 1
-
-    /**
-     * @param context
-     */
-    override fun onAttach(context: Context?) {
-
-        super.onAttach(context)
-    }
-
+    
     /**
      * @param savedInstanceState
      */
@@ -153,15 +143,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
                     binding!!.executePendingBindings()
                 })
     }
-
-    /**
-     *
-     */
-    override fun onDetach() {
-
-        super.onDetach()
-    }
-
+    
     override fun top() {
 
         binding!!.listWork.smoothScrollToPosition(0)

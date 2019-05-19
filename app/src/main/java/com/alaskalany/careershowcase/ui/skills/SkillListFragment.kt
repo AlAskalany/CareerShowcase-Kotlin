@@ -24,7 +24,6 @@
 
 package com.alaskalany.careershowcase.ui.skills
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +38,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alaskalany.careershowcase.R
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding
-import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.model.Skill
 import com.alaskalany.careershowcase.ui.ScrollToTop
 import com.alaskalany.careershowcase.viewmodel.SkillListViewModel
@@ -85,15 +83,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @param mColumnCount
      */
     protected var columnCount = 1
-
-    /**
-     * @param context
-     */
-    override fun onAttach(context: Context?) {
-
-        super.onAttach(context)
-    }
-
+    
     /**
      * @param savedInstanceState
      */
@@ -158,15 +148,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
                     mBinding!!.executePendingBindings()
                 })
     }
-
-    /**
-     *
-     */
-    override fun onDetach() {
-
-        super.onDetach()
-    }
-
+    
     override fun top() {
 
         mBinding!!.listSkill.smoothScrollToPosition(0)

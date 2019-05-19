@@ -85,7 +85,7 @@ class OverviewFragment : Fragment(), ScrollToTop {
     /**
      * @param context
      */
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
 
         super.onAttach(context)
         registerListener(context)
