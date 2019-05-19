@@ -123,6 +123,6 @@ class MainActivity : AppCompatActivity(), OverviewFragment.OnOverviewFragmentInt
         /**
          * Debugging tag
          */
-        val TAG = "MainActivity"
+        private const val TAG: String = "MainActivity"
     }
 }
