@@ -34,7 +34,6 @@ import com.alaskalany.careershowcase.GlideApp
 import com.alaskalany.careershowcase.R
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding
 import com.alaskalany.careershowcase.entity.SkillEntity
-import java.util.Objects
 
 /**
  * [RecyclerView.Adapter] that can display a [SkillEntity]

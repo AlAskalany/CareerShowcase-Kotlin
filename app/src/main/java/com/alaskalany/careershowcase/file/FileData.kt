@@ -27,7 +27,6 @@ package com.alaskalany.careershowcase.file
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import com.alaskalany.careershowcase.entity.ContactEntity
 import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.entity.SkillEntity

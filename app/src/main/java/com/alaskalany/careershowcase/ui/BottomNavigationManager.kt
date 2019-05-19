@@ -38,8 +38,7 @@ import com.alaskalany.careershowcase.ui.overview.OverviewFragment
 import com.alaskalany.careershowcase.ui.skills.SkillListFragment
 import com.alaskalany.careershowcase.ui.work.WorkListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-import java.util.Objects
+import java.util.*
 
 /**
  * Bottom Navigation Manager that handles [BottomNavigationView]
