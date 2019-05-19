@@ -37,7 +37,7 @@ import com.alaskalany.careershowcase.model.Skill
  */
 @Entity(tableName = "skills_table")
 class SkillEntity : Skill {
-
+    
     /**
      *
      */
@@ -50,7 +50,7 @@ class SkillEntity : Skill {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "skill_id")
     override var id: Int = 0
-
+    
     /**
      *
      */
@@ -62,10 +62,10 @@ class SkillEntity : Skill {
      */
     @ColumnInfo(name = "skill_title")
     override var title: String? = null
-
+    
     @ColumnInfo(name = "skill_level")
     override var level: Int = 0
-
+    
     @ColumnInfo(name = "skill_log_url")
     override var logoUrl: String? = null
 }

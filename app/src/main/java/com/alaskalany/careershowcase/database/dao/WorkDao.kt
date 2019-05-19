@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.WorkEntity
 
 @Dao
 interface WorkDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(workEntities: List<WorkEntity>)
-
+    
     @Query("select * from works_table where work_id = :id")
     fun load(id: Int): LiveData<WorkEntity>
-
+    
     @Query("select * from works_table where work_id = :id")
     fun loadSync(id: Int): WorkEntity
-
+    
     @Query("SELECT * FROM works_table")
     fun loadAll(): LiveData<List<WorkEntity>>
 }

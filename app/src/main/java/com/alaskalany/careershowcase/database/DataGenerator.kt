@@ -33,35 +33,35 @@ import org.jetbrains.annotations.Contract
 import java.util.*
 
 object DataGenerator {
-
+    
     @JvmStatic
     @Contract(pure = true)
     fun generateContacts(): List<ContactEntity> {
-
+        
         return ContactContent.ITEMS
     }
-
+    
     @JvmStatic
     @Contract(pure = true)
     fun generateEducations(): List<EducationEntity> {
-
+        
         return EducationContent.ITEMS
     }
-
+    
     @JvmStatic
     @Contract(pure = true)
     fun generateSkills(): List<SkillEntity> {
-
+        
         return SkillContent.ITEMS
     }
-
+    
     @JvmStatic
     @Contract(pure = true)
     fun generateWorks(): List<WorkEntity> {
-
+        
         return WorkContent.ITEMS
     }
-
+    
     /**
      * Helper class for providing sample description for user interfaces created by
      * Android template wizards.
@@ -70,49 +70,48 @@ object DataGenerator {
      * TODO: Replace all uses of this class before publishing your app.
      */
     object ContactContent {
-
+        
         /**
          * An array of sample (contact) items.
          */
         val ITEMS: MutableList<ContactEntity> = ArrayList()
-
+        
         /**
          * A map of sample (contact) items, by ID.
          */
         val ITEM_MAP: MutableMap<Int, ContactEntity> = HashMap()
-
+        
         private val COUNT = 25
-
+        
         init {
             // Add some sample items.
             for (i in 1..COUNT) {
                 addItem(createContactItem(i))
             }
         }
-
+        
         private fun addItem(item: ContactEntity) {
-
+            
             ITEMS.add(item)
             ITEM_MAP[item.id] = item
         }
-
+        
         private fun createContactItem(position: Int): ContactEntity {
-
+            
             return ContactEntity(position, "Item $position", makeDetails(position))
         }
-
+        
         private fun makeDetails(position: Int): String {
-
+            
             val builder = StringBuilder()
-            builder.append("Details about Item: ")
-                    .append(position)
+            builder.append("Details about Item: ").append(position)
             for (i in 0 until position) {
                 builder.append("\nMore contactDetails information here.")
             }
             return builder.toString()
         }
     }
-
+    
     /**
      * Helper class for providing sample description for user interfaces created by
      * Android template wizards.
@@ -121,28 +120,28 @@ object DataGenerator {
      * TODO: Replace all uses of this class before publishing your app.
      */
     object EducationContent {
-
+        
         /**
          * An array of sample (education) items.
          */
         val ITEMS: MutableList<EducationEntity> = ArrayList()
-
+        
         private val COUNT = 25
-
+        
         init {
             // Add some sample items.
             for (i in 1..COUNT) {
                 addItem(createEducationItem(i))
             }
         }
-
+        
         private fun addItem(item: EducationEntity) {
-
+            
             ITEMS.add(item)
         }
-
+        
         private fun createEducationItem(position: Int): EducationEntity {
-
+            
             val educationEntity = EducationEntity()
             educationEntity.id = position
             educationEntity.title = "Education $position"
@@ -152,19 +151,18 @@ object DataGenerator {
             educationEntity.duration = "2014-2019"
             return educationEntity
         }
-
+        
         private fun makeDetails(position: Int): String {
-
+            
             val builder = StringBuilder()
-            builder.append("Details about Education: ")
-                    .append(position)
+            builder.append("Details about Education: ").append(position)
             for (i in 0 until position) {
                 builder.append("\nMore contactDetails information here.")
             }
             return builder.toString()
         }
     }
-
+    
     /**
      * Helper class for providing sample description for user interfaces created by
      * Android template wizards.
@@ -173,41 +171,41 @@ object DataGenerator {
      * TODO: Replace all uses of this class before publishing your app.
      */
     object SkillContent {
-
+        
         /**
          * An array of sample (skill) items.
          */
         val ITEMS: MutableList<SkillEntity> = ArrayList()
-
+        
         private val COUNT = 25
-
+        
         init {
             // Add some sample items.
             for (i in 1..COUNT) {
                 addItem(createSkillItem(i))
             }
         }
-
+        
         private fun addItem(item: SkillEntity) {
-
+            
             ITEMS.add(item)
         }
-
+        
         private fun createSkillItem(position: Int): SkillEntity {
-
+            
             val skillEntity = SkillEntity()
             skillEntity.id = position
             skillEntity.title = "Skill $position"
             skillEntity.level = makeLevel()
             return skillEntity
         }
-
+        
         private fun makeLevel(): Int {
-
+            
             return Random().nextInt(5)
         }
     }
-
+    
     /**
      * Helper class for providing sample description for user interfaces created by
      * Android template wizards.
@@ -216,40 +214,39 @@ object DataGenerator {
      * TODO: Replace all uses of this class before publishing your app.
      */
     object WorkContent {
-
+        
         /**
          * An array of sample (contact) items.
          */
         val ITEMS: MutableList<WorkEntity> = ArrayList()
-
+        
         private val COUNT = 25
-
+        
         init {
             // Add some sample items.
             for (i in 1..COUNT) {
                 addItem(createWorkItem(i))
             }
         }
-
+        
         private fun addItem(item: WorkEntity) {
-
+            
             ITEMS.add(item)
         }
-
+        
         private fun createWorkItem(position: Int): WorkEntity {
-
+            
             val workEntity = WorkEntity()
             workEntity.id = position
             workEntity.title = "Work $position"
             workEntity.description = makeDetails(position)
             return workEntity
         }
-
+        
         private fun makeDetails(position: Int): String {
-
+            
             val builder = StringBuilder()
-            builder.append("Details about Work: ")
-                    .append(position)
+            builder.append("Details about Work: ").append(position)
             for (i in 0 until position) {
                 builder.append("\nMore contactDetails information here.")
             }

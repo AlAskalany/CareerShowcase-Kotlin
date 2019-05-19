@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.SkillEntity
 
 @Dao
 interface SkillDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(skillEntities: List<SkillEntity>)
-
+    
     @Query("select * from skills_table where skill_id = :id")
     fun load(id: Int): LiveData<SkillEntity>
-
+    
     @Query("select * from skills_table where skill_id = :id")
     fun loadSync(id: Int): SkillEntity
-
+    
     @Query("SELECT * FROM skills_table")
     fun loadAll(): LiveData<List<SkillEntity>>
 }

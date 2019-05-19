@@ -25,6 +25,6 @@
 package com.alaskalany.careershowcase.model.properties
 
 interface FirstName {
-
+    
     var firstName: String
 }

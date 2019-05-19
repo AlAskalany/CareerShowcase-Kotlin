@@ -25,6 +25,6 @@
 package com.alaskalany.careershowcase.model.properties
 
 interface Institution {
-
+    
     var institution: String?
 }

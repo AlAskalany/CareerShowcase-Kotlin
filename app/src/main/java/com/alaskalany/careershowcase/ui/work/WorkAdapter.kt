@@ -47,17 +47,18 @@ class WorkAdapter
 /**
  * @param workOnClickCallback Listener to clicks on Work items
  */
-(
-        /**
-         *
-         */
-        private val workOnClickCallback: WorkOnClickCallback) : RecyclerView.Adapter<WorkAdapter.ViewHolder>() {
-
+    (
+    /**
+     *
+     */
+    private val workOnClickCallback: WorkOnClickCallback
+    ) : RecyclerView.Adapter<WorkAdapter.ViewHolder>() {
+    
     /**
      *
      */
     private var workEntities: List<WorkEntity>? = null
-
+    
     /**
      * Called when RecyclerView needs a new [RecyclerView.ViewHolder] of the given type to represent
      * an item.
@@ -83,15 +84,14 @@ class WorkAdapter
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        val binding = DataBindingUtil.inflate<FragmentWorkBinding>(LayoutInflater.from(parent.context),
-                R.layout.fragment_work,
-                parent,
-                false)
+        
+        val binding = DataBindingUtil.inflate<FragmentWorkBinding>(
+            LayoutInflater.from(parent.context), R.layout.fragment_work, parent, false
+                                                                  )
         binding.workOnClickCallback = workOnClickCallback
         return ViewHolder(binding)
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the [RecyclerView.ViewHolder.itemView] to reflect the item at the given
@@ -113,55 +113,54 @@ class WorkAdapter
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        
         holder.binding.work = workEntities!![position]
         holder.binding.workOnClickCallback = workOnClickCallback
         val rootView = holder.binding.root
-        GlideApp.with(rootView)
-                .load(workEntities!![position]
-                        .logoUrl)
-                .into(holder.binding.imageViewWorkLogo)
+        GlideApp.with(rootView).load(
+            workEntities!![position].logoUrl
+                                    ).into(holder.binding.imageViewWorkLogo)
         holder.binding.executePendingBindings()
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-
+        
         return if (workEntities == null) 0 else workEntities!!.size
     }
-
+    
     fun setWorkList(workList: List<WorkEntity>) {
-
+        
         if (workEntities == null) {
             workEntities = workList
             notifyItemRangeInserted(0, workList.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
                  * @return The size of the old list.
                  */
                 override fun getOldListSize(): Int {
-
+                    
                     return workEntities!!.size
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
                  * @return The size of the new list.
                  */
                 override fun getNewListSize(): Int {
-
+                    
                     return workList.size
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  *
@@ -173,12 +172,10 @@ class WorkAdapter
                  * @return True if the two items represent the same object or false if they are different.
                  */
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
-                    return workEntities!![oldItemPosition]
-                            .id == workList[newItemPosition]
-                            .id
+                    
+                    return workEntities!![oldItemPosition].id == workList[newItemPosition].id
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -200,20 +197,17 @@ class WorkAdapter
                  * @return True if the contents of the items are the same or false if they are different.
                  */
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
+                    
                     val newWork = workList[newItemPosition]
                     val oldProduct = workEntities!![oldItemPosition]
-                    return newWork.id == oldProduct.id &&
-                            newWork.description == oldProduct.description &&
-                            newWork.title == oldProduct.title &&
-                            newWork.description == oldProduct.description
+                    return newWork.id == oldProduct.id && newWork.description == oldProduct.description && newWork.title == oldProduct.title && newWork.description == oldProduct.description
                 }
             })
             workEntities = workList
             result.dispatchUpdatesTo(this)
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -234,8 +228,9 @@ class WorkAdapter
      * @param binding binding for the FragmentWork layout
      */
     internal constructor(
-            /**
-             *
-             */
-            val binding: FragmentWorkBinding) : RecyclerView.ViewHolder(binding.root)
+        /**
+         *
+         */
+        val binding: FragmentWorkBinding
+                        ) : RecyclerView.ViewHolder(binding.root)
 }

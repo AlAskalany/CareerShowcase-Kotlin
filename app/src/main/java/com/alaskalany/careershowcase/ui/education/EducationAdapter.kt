@@ -47,17 +47,18 @@ class EducationAdapter
 /**
  * @param educationOnClickCallback Listener to clicks on Education items
  */
-(
-        /**
-         *
-         */
-        private val educationOnClickCallback: EducationOnClickCallback) : RecyclerView.Adapter<EducationAdapter.ViewHolder>() {
-
+    (
+    /**
+     *
+     */
+    private val educationOnClickCallback: EducationOnClickCallback
+    ) : RecyclerView.Adapter<EducationAdapter.ViewHolder>() {
+    
     /**
      *
      */
     private var educationEntities: List<EducationEntity>? = null
-
+    
     /**
      * Called when RecyclerView needs a new [RecyclerView.ViewHolder] of the given type to represent
      * an item.
@@ -83,15 +84,14 @@ class EducationAdapter
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        val binding = DataBindingUtil.inflate<FragmentEducationBinding>(LayoutInflater.from(parent.context),
-                R.layout.fragment_education,
-                parent,
-                false)
+        
+        val binding = DataBindingUtil.inflate<FragmentEducationBinding>(
+            LayoutInflater.from(parent.context), R.layout.fragment_education, parent, false
+                                                                       )
         binding.educationOnClickCallback = educationOnClickCallback
         return ViewHolder(binding)
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the [RecyclerView.ViewHolder.itemView] to reflect the item at the given
@@ -113,56 +113,55 @@ class EducationAdapter
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        
         holder.binding.education = educationEntities!![position]
-
+        
         holder.binding.educationOnClickCallback = educationOnClickCallback
         val rootView = holder.binding.root
-        GlideApp.with(rootView)
-                .load(educationEntities!![position]
-                        .logoUrl)
-                .into(holder.binding.imageViewEducationLogo)
+        GlideApp.with(rootView).load(
+            educationEntities!![position].logoUrl
+                                    ).into(holder.binding.imageViewEducationLogo)
         holder.binding.executePendingBindings()
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-
+        
         return if (educationEntities == null) 0 else educationEntities!!.size
     }
-
+    
     fun setEducationList(educationList: List<EducationEntity>) {
-
+        
         if (educationEntities == null) {
             educationEntities = educationList
             notifyItemRangeInserted(0, educationList.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
                  * @return The size of the old list.
                  */
                 override fun getOldListSize(): Int {
-
+                    
                     return educationEntities!!.size
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
                  * @return The size of the new list.
                  */
                 override fun getNewListSize(): Int {
-
+                    
                     return educationList.size
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  *
@@ -174,12 +173,10 @@ class EducationAdapter
                  * @return True if the two items represent the same object or false if they are different.
                  */
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
-                    return educationEntities!![oldItemPosition]
-                            .id == educationList[newItemPosition]
-                            .id
+                    
+                    return educationEntities!![oldItemPosition].id == educationList[newItemPosition].id
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -201,19 +198,17 @@ class EducationAdapter
                  * @return True if the contents of the items are the same or false if they are different.
                  */
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
+                    
                     val newEducation = educationList[newItemPosition]
                     val oldEducation = educationEntities!![oldItemPosition]
-                    return newEducation.id == oldEducation.id &&
-                            newEducation.description == oldEducation.description &&
-                            newEducation.title == oldEducation.title
+                    return newEducation.id == oldEducation.id && newEducation.description == oldEducation.description && newEducation.title == oldEducation.title
                 }
             })
             educationEntities = educationList
             result.dispatchUpdatesTo(this)
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -234,8 +229,9 @@ class EducationAdapter
      * @param binding binding for the FragmentEducation layout
      */
     internal constructor(
-            /**
-             *
-             */
-            val binding: FragmentEducationBinding) : RecyclerView.ViewHolder(binding.root)
+        /**
+         *
+         */
+        val binding: FragmentEducationBinding
+                        ) : RecyclerView.ViewHolder(binding.root)
 }

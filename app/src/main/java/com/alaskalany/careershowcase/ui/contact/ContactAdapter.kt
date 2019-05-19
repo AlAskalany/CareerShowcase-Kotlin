@@ -48,17 +48,18 @@ class ContactAdapter
 /**
  * @param callback Callback for click on Contact items
  */
-(
-        /**
-         *
-         */
-        private val contactOnClickCallback: ContactOnClickCallback) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
-
+    (
+    /**
+     *
+     */
+    private val contactOnClickCallback: ContactOnClickCallback
+    ) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
+    
     /**
      *
      */
     private var contactEntities: List<ContactEntity>? = null
-
+    
     /**
      * Called when RecyclerView needs a new [RecyclerView.ViewHolder] of the given type to represent
      * an item.
@@ -84,15 +85,14 @@ class ContactAdapter
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        val binding = DataBindingUtil.inflate<FragmentContactBinding>(LayoutInflater.from(parent.context),
-                R.layout.fragment_contact,
-                parent,
-                false)
+        
+        val binding = DataBindingUtil.inflate<FragmentContactBinding>(
+            LayoutInflater.from(parent.context), R.layout.fragment_contact, parent, false
+                                                                     )
         binding.contactOnClickCallback = contactOnClickCallback
         return ViewHolder(binding)
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the [RecyclerView.ViewHolder.itemView] to reflect the item at the given
@@ -114,67 +114,65 @@ class ContactAdapter
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        
         holder.binding.contact = contactEntities!![position]
-
-        val title = contactEntities!![position]
-                .title
-
+        
+        val title = contactEntities!![position].title
+        
         when (title) {
             "E-mail" -> holder.binding.textViewContactDescription.autoLinkMask = Linkify.EMAIL_ADDRESSES
             "Mobile" -> holder.binding.textViewContactDescription.autoLinkMask = Linkify.PHONE_NUMBERS
-            "Skype" -> holder.binding.textViewContactDescription.setTextIsSelectable(true)
-            else -> {
+            "Skype"  -> holder.binding.textViewContactDescription.setTextIsSelectable(true)
+            else     -> {
             }
         }
-
+        
         holder.binding.contactOnClickCallback = contactOnClickCallback
         val rootView = holder.binding.root
-        GlideApp.with(rootView)
-                .load(contactEntities!![position]
-                        .logoUrl)
-                .into(holder.binding.imageViewContactLogo)
+        GlideApp.with(rootView).load(
+            contactEntities!![position].logoUrl
+                                    ).into(holder.binding.imageViewContactLogo)
         holder.binding.executePendingBindings()
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-
+        
         return if (contactEntities == null) 0 else contactEntities!!.size
     }
-
+    
     fun setContactList(contactList: List<ContactEntity>) {
-
+        
         if (contactEntities == null) {
             contactEntities = contactList
             notifyItemRangeInserted(0, contactList.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
                  * @return The size of the old list.
                  */
                 override fun getOldListSize(): Int {
-
+                    
                     return contactEntities!!.size
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
                  * @return The size of the new list.
                  */
                 override fun getNewListSize(): Int {
-
+                    
                     return contactList.size
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  *
@@ -186,12 +184,10 @@ class ContactAdapter
                  * @return True if the two items represent the same object or false if they are different.
                  */
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
-                    return contactEntities!![oldItemPosition]
-                            .id == contactList[newItemPosition]
-                            .id
+                    
+                    return contactEntities!![oldItemPosition].id == contactList[newItemPosition].id
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -213,7 +209,7 @@ class ContactAdapter
                  * @return True if the contents of the items are the same or false if they are different.
                  */
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
+                    
                     val newContact = contactList[newItemPosition]
                     val oldContact = contactEntities!![oldItemPosition]
                     val isIdEqual = newContact.id == oldContact.id
@@ -226,7 +222,7 @@ class ContactAdapter
             result.dispatchUpdatesTo(this)
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -247,8 +243,9 @@ class ContactAdapter
      * @param binding binding for the FragmentContact layout
      */
     internal constructor(
-            /**
-             *
-             */
-            val binding: FragmentContactBinding) : RecyclerView.ViewHolder(binding.root)
+        /**
+         *
+         */
+        val binding: FragmentContactBinding
+                        ) : RecyclerView.ViewHolder(binding.root)
 }

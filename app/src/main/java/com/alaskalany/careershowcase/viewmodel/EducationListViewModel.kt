@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 import com.alaskalany.careershowcase.file.FileData
 
 class EducationListViewModel(application: Application) : AndroidViewModel(application) {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private val observableEducations: MediatorLiveData<List<EducationEntity>>
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     val educations: LiveData<List<EducationEntity>>
         get() = observableEducations
-
+    
     init {
         observableEducations = MediatorLiveData()
         // set by default null, until we get data from the database.
@@ -50,6 +50,8 @@ class EducationListViewModel(application: Application) : AndroidViewModel(applic
         // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().educationRepository.getEducations();
         val listLiveData = FileData.getEducationLiveData(application)
         // observe the changes of the products from the database and forward them
-        observableEducations.addSource(listLiveData, Observer<List<EducationEntity>> { observableEducations.setValue(it) })
+        observableEducations.addSource(
+            listLiveData,
+            Observer<List<EducationEntity>> { observableEducations.setValue(it) })
     }
 }

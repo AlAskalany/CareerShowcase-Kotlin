@@ -35,12 +35,12 @@ import java.util.concurrent.Executor
  * App class extending [Application]
  */
 class CareerShowcaseApp : Application() {
-
+    
     /**
      * App executors; Disk IO [Executor],Network [Executor],and Main thread [Executor].
      */
     private var appExecutors: AppExecutors? = null
-
+    
     /**
      * Gets [DataRepository]
      *
@@ -48,13 +48,13 @@ class CareerShowcaseApp : Application() {
      */
     val repository: DataRepository?
         get() = DataRepository.getInstance(database!!)
-
+    
     /**
      * @return Application's [RoomDatabase]
      */
     val database: AppDatabase?
         get() = AppDatabase.getInstance(this, appExecutors!!)
-
+    
     /**
      * Called when the application is starting, before any activity, service,
      * or receiver objects (excluding content providers) have been created.
@@ -75,7 +75,7 @@ class CareerShowcaseApp : Application() {
      * order matters.
      */
     override fun onCreate() {
-
+        
         super.onCreate()
         appExecutors = AppExecutors()
     }

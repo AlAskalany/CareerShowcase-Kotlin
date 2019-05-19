@@ -47,17 +47,18 @@ class SkillAdapter
 /**
  * @param skillOnClickCallback Listener to clicks on Skill items
  */
-(
-        /**
-         *
-         */
-        private val skillOnClickCallback: SkillOnClickCallback) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
-
+    (
+    /**
+     *
+     */
+    private val skillOnClickCallback: SkillOnClickCallback
+    ) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
+    
     /**
      *
      */
     private var skillEntities: List<SkillEntity>? = null
-
+    
     /**
      * Called when RecyclerView needs a new [RecyclerView.ViewHolder] of the given type to represent
      * an item.
@@ -83,15 +84,14 @@ class SkillAdapter
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        val binding = DataBindingUtil.inflate<FragmentSkillBinding>(LayoutInflater.from(parent.context),
-                R.layout.fragment_skill,
-                parent,
-                false)
+        
+        val binding = DataBindingUtil.inflate<FragmentSkillBinding>(
+            LayoutInflater.from(parent.context), R.layout.fragment_skill, parent, false
+                                                                   )
         binding.skillOnClickCallback = skillOnClickCallback
         return ViewHolder(binding)
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the [RecyclerView.ViewHolder.itemView] to reflect the item at the given
@@ -113,56 +113,55 @@ class SkillAdapter
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        
         holder.binding.skill = skillEntities!![position]
-
+        
         holder.binding.skillOnClickCallback = skillOnClickCallback
         val rootView = holder.binding.root
-        GlideApp.with(rootView)
-                .load(skillEntities!![position]
-                        .logoUrl)
-                .into(holder.binding.imageViewSkillLogo)
+        GlideApp.with(rootView).load(
+            skillEntities!![position].logoUrl
+                                    ).into(holder.binding.imageViewSkillLogo)
         holder.binding.executePendingBindings()
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-
+        
         return if (skillEntities == null) 0 else skillEntities!!.size
     }
-
+    
     fun setSkillList(skillList: List<SkillEntity>) {
-
+        
         if (skillEntities == null) {
             skillEntities = skillList
             notifyItemRangeInserted(0, skillList.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
                  * @return The size of the old list.
                  */
                 override fun getOldListSize(): Int {
-
+                    
                     return skillEntities!!.size
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
                  * @return The size of the new list.
                  */
                 override fun getNewListSize(): Int {
-
+                    
                     return skillList.size
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  *
@@ -174,12 +173,10 @@ class SkillAdapter
                  * @return True if the two items represent the same object or false if they are different.
                  */
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
-                    return skillEntities!![oldItemPosition]
-                            .id == skillList[newItemPosition]
-                            .id
+                    
+                    return skillEntities!![oldItemPosition].id == skillList[newItemPosition].id
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -201,19 +198,17 @@ class SkillAdapter
                  * @return True if the contents of the items are the same or false if they are different.
                  */
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
+                    
                     val newSkill = skillList[newItemPosition]
                     val oldSkill = skillEntities!![oldItemPosition]
-                    return newSkill.id == oldSkill.id &&
-                            newSkill.title == oldSkill.title &&
-                            newSkill.level == oldSkill.level
+                    return newSkill.id == oldSkill.id && newSkill.title == oldSkill.title && newSkill.level == oldSkill.level
                 }
             })
             skillEntities = skillList
             result.dispatchUpdatesTo(this)
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -234,8 +229,9 @@ class SkillAdapter
      * @param binding binding for the FragmentSkill layout
      */
     internal constructor(
-            /**
-             *
-             */
-            val binding: FragmentSkillBinding) : RecyclerView.ViewHolder(binding.root)
+        /**
+         *
+         */
+        val binding: FragmentSkillBinding
+                        ) : RecyclerView.ViewHolder(binding.root)
 }

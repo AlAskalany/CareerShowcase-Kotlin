@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.EducationEntity
 
 @Dao
 interface EducationDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(educationEntities: List<EducationEntity>)
-
+    
     @Query("select * from education_table where education_id = :id")
     fun load(id: Int): LiveData<EducationEntity>
-
+    
     @Query("select * from education_table where education_id = :id")
     fun loadSync(id: Int): EducationEntity
-
+    
     @Query("SELECT * FROM education_table")
     fun loadAll(): LiveData<List<EducationEntity>>
 }

@@ -35,78 +35,82 @@ import com.google.gson.Gson
 import org.jetbrains.annotations.Contract
 
 object FileData {
-
+    
     @JvmStatic
     @Contract(pure = true)
     fun getInstance(): FileData {
         return FileData
     }
-
+    
     private val educationLiveData = MediatorLiveData<List<EducationEntity>>()
-
+    
     private val skillsLiveData = MediatorLiveData<List<SkillEntity>>()
-
+    
     private val workLiveData = MediatorLiveData<List<WorkEntity>>()
-
+    
     private val contactsLiveData = MediatorLiveData<List<ContactEntity>>()
-
+    
     fun getEducationLiveData(application: Application): LiveData<List<EducationEntity>> {
-
+        
         if (educationLiveData.value == null) {
             loadEducation(application)
         }
         return educationLiveData
     }
-
+    
     private fun loadEducation(application: Application) {
-
+        
         val gson = Gson()
-        val dataJson = gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
+        val dataJson =
+            gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
         educationLiveData.postValue(dataJson.education)
     }
-
+    
     fun getSkillsLiveData(application: Application): LiveData<List<SkillEntity>> {
-
+        
         if (skillsLiveData.value == null) {
             loadSkills(application)
         }
         return skillsLiveData
     }
-
+    
     private fun loadSkills(application: Application) {
-
+        
         val gson = Gson()
-        val dataJson = gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
+        val dataJson =
+            gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
         skillsLiveData.postValue(dataJson.skills)
     }
-
+    
     fun getWorkLiveData(application: Application): LiveData<List<WorkEntity>> {
-
+        
         if (workLiveData.value == null) {
             loadWork(application)
         }
         return workLiveData
     }
-
+    
     private fun loadWork(application: Application) {
-
+        
         val gson = Gson()
-        val dataJson = gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
+        val dataJson =
+            gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
         workLiveData.postValue(dataJson.work)
     }
-
+    
     fun getContactsLiveData(application: Application): LiveData<List<ContactEntity>> {
-
+        
         if (contactsLiveData.value == null) {
             loadContacts(application)
         }
         return contactsLiveData
     }
-
+    
     private fun loadContacts(application: Application) {
-
+        
         val gson = Gson()
-        val dataJson = gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
+        val dataJson =
+            gson.fromJson(JsonFileReader.loadJSONFromAsset(application.applicationContext), DataJson::class.java)
         contactsLiveData.postValue(dataJson.contacts)
     }
 }

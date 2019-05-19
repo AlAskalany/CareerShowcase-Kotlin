@@ -47,41 +47,43 @@ class BottomNavigationManager
 /**
  * @param fragmentActivity [MainActivity]
  */
-(
-        /**
-         * [MainActivity]
-         */
-        private val activity: FragmentActivity,
-        /**
-         * [BottomNavigationView]
-         */
-        private var navigation: BottomNavigationView?) : BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener, FragmentManager.OnBackStackChangedListener, OnBackPressed {
-
+    (
+    /**
+     * [MainActivity]
+     */
+    private val activity: FragmentActivity,
+    /**
+     * [BottomNavigationView]
+     */
+    private var navigation: BottomNavigationView?
+    ) : BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener,
+        FragmentManager.OnBackStackChangedListener, OnBackPressed {
+    
     /**
      * Collection of fragments used with [BottomNavigationView]
      */
     private val fragments: SparseArrayCompat<ScrollToTop>
-
+    
     init {
         fragments = SparseArrayCompat()
         createFragments(fragments)
-
+        
         // Set the bottom navigation view
         setBottomNavigationView(navigation)
-
+        
         // listen to item selection and reselection from the bottom navigation view
         navigation!!.setOnNavigationItemSelectedListener(this)
         navigation!!.setOnNavigationItemReselectedListener(this)
     }
-
+    
     /**
      * @param navigation [BottomNavigationView]
      */
     private fun setBottomNavigationView(navigation: BottomNavigationView?) {
-
+        
         this.navigation = navigation
     }
-
+    
     /**
      * @param menuItem Bottom navigation menu item
      *
@@ -90,7 +92,7 @@ class BottomNavigationManager
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         // Replace current fragment with requested fragment
         when (menuItem.itemId) {
-            R.id.navigation_overview -> {
+            R.id.navigation_overview  -> {
                 replaceFragment(BottomNavigationManager.OVERVIEW)
                 return true
             }
@@ -98,22 +100,22 @@ class BottomNavigationManager
                 replaceFragment(BottomNavigationManager.EDUCATION)
                 return true
             }
-            R.id.navigation_work -> {
+            R.id.navigation_work      -> {
                 replaceFragment(BottomNavigationManager.WORK)
                 return true
             }
-            R.id.navigation_skills -> {
+            R.id.navigation_skills    -> {
                 replaceFragment(BottomNavigationManager.SKILLS)
                 return true
             }
-            R.id.navigation_contact -> {
+            R.id.navigation_contact   -> {
                 replaceFragment(BottomNavigationManager.CONTACT)
                 return true
             }
         }
         return false
     }
-
+    
     /**
      * @param navFragment Navigation fragment
      *
@@ -121,11 +123,10 @@ class BottomNavigationManager
      */
     @Throws(RuntimeException::class)
     private fun replaceFragment(navFragment: Int) {
-
+        
         val fragment = fragments.get(navFragment)
         if (fragment != null) {
-            val transaction = activity.supportFragmentManager
-                    .beginTransaction()
+            val transaction = activity.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_navigation, (fragment as Fragment?)!!)
             if (fragment !is OverviewFragment) {
                 transaction.addToBackStack(null)
@@ -135,60 +136,60 @@ class BottomNavigationManager
             throw RuntimeException("Navigation fragment shouldn't be null")
         }
     }
-
+    
     /**
      * Handles reselection of a [BottomNavigationView]'s menu item, by scrolling to the top of the screen
      *
      * @param menuItem Bottom navigation menu item
      */
     override fun onNavigationItemReselected(menuItem: MenuItem) {
-
+        
         when (menuItem.itemId) {
-            R.id.navigation_overview ->
+            R.id.navigation_overview  ->
                 // Overview menu item reselected, scroll to the top of the overview fragment
                 scrollToFragmentTop(getFragment(OVERVIEW))
             R.id.navigation_education ->
                 // Education menu item reselected, scroll to the top of the education fragment
                 scrollToFragmentTop(getFragment(EDUCATION))
-            R.id.navigation_work ->
+            R.id.navigation_work      ->
                 // Work menu item reselected, scroll to the top of the work fragment
                 scrollToFragmentTop(getFragment(WORK))
-            R.id.navigation_skills ->
+            R.id.navigation_skills    ->
                 // Skills menu item reselected, scroll to the top of the skills fragment
                 scrollToFragmentTop(getFragment(SKILLS))
-            R.id.navigation_contact ->
+            R.id.navigation_contact   ->
                 // Contact menu item reselected, scroll to the top of the contact fragment
                 scrollToFragmentTop(getFragment(CONTACT))
         }
     }
-
+    
     /**
      * Scroll to the top of the fragment implemented [ScrollToTop]
      *
      * @param fragment Bottom navigation fragment
      */
     private fun scrollToFragmentTop(fragment: ScrollToTop) {
-
+        
         fragment.top()
     }
-
+    
     /**
      * @param fragmentId Fragment id
      *
      * @return Bottom navigation fragment
      */
     private fun getFragment(fragmentId: Int): ScrollToTop {
-
+        
         return Objects.requireNonNull<ScrollToTop>(fragments.get(fragmentId))
     }
-
+    
     /**
      * For app start, attach the [OverviewFragment]
      *
      * @param freshStart Is this a fresh activity start
      */
     fun init(freshStart: Boolean) {
-
+        
         if (freshStart) {
             val fragment = fragments.get(OVERVIEW)
             if (fragment != null) {
@@ -200,16 +201,15 @@ class BottomNavigationManager
             }
         }
     }
-
+    
     /**
      * Called whenever the contents of the back stack change.
      */
     override fun onBackStackChanged() {
         // TODO
-        Toast.makeText(activity.applicationContext, "Backstack changed", Toast.LENGTH_SHORT)
-                .show()
+        Toast.makeText(activity.applicationContext, "Backstack changed", Toast.LENGTH_SHORT).show()
     }
-
+    
     /**
      * Handling back presses by replacing any fragment with the [OverviewFragment]
      *
@@ -218,11 +218,10 @@ class BottomNavigationManager
     override fun onBackPressed(): Boolean {
         // If back was pressed with a fragment other than the overview fragment attached
         if (navigation!!.selectedItemId != R.id.navigation_overview) {
-
+            
             // Set the overview menu item in the bottom navigation view as selected
-            navigation!!.menu
-                    .getItem(0).isChecked = true
-
+            navigation!!.menu.getItem(0).isChecked = true
+            
             // Attach the overview fragment
             replaceFragment(OVERVIEW)
             return true
@@ -230,36 +229,36 @@ class BottomNavigationManager
         // If back was pressed with the overview fragment attached
         return false
     }
-
+    
     companion object {
-
+        
         /**
          * [OverviewFragment]
          */
         private val OVERVIEW = 0
-
+        
         /**
          * [EducationListFragment]
          */
         private val EDUCATION = 1
-
+        
         /**
          * [WorkListFragment]
          */
         private val WORK = 2
-
+        
         /**
          * [SkillListFragment]
          */
         private val SKILLS = 3
-
+        
         /**
          * [ContactListFragment]
          */
         private val CONTACT = 4
-
+        
         private fun createFragments(mFragments: SparseArrayCompat<ScrollToTop>) {
-
+            
             mFragments.put(OVERVIEW, OverviewFragment())
             mFragments.put(EDUCATION, EducationListFragment())
             mFragments.put(WORK, WorkListFragment())

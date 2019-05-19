@@ -30,7 +30,7 @@ import com.alaskalany.careershowcase.model.Education
  *
  */
 interface EducationOnClickCallback {
-
+    
     /**
      * @param item
      */

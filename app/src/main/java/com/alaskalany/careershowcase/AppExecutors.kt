@@ -41,58 +41,59 @@ class AppExecutors
  * @param mainThread Main thread [Executor]
  */
 private constructor(
-        /**
-         * Disk IO [Executor]
-         */
-        private val diskIoExecutor: Executor,
-        /**
-         * Network IO [Executor]
-         */
-        private val networkIoExecutor: Executor,
-        /**
-         * Main thread [Executor]
-         */
-        private val mainThreadExecutor: Executor) {
-
+    /**
+     * Disk IO [Executor]
+     */
+    private val diskIoExecutor: Executor,
+    /**
+     * Network IO [Executor]
+     */
+    private val networkIoExecutor: Executor,
+    /**
+     * Main thread [Executor]
+     */
+    private val mainThreadExecutor: Executor
+                   ) {
+    
     /**
      * App [Executor]s
      */
-    constructor() : this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3), MainThreadExecutor()) {}
-
+    constructor() : this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3), MainThreadExecutor())
+    
     /**
      * @return DisK IO [Executor]
      */
     fun diskIO(): Executor {
-
+        
         return diskIoExecutor
     }
-
+    
     /**
      * @return Network IO [Executor]
      */
     fun networkIO(): Executor {
-
+        
         return networkIoExecutor
     }
-
+    
     /**
      * @return Main thread [Executor]
      */
     fun mainThread(): Executor {
-
+        
         return mainThreadExecutor
     }
-
+    
     /**
      * Main thread [Executor]
      */
     private class MainThreadExecutor : Executor {
-
+        
         /**
          * Main thread handler
          */
         private val mainThreadHandler = Handler(Looper.getMainLooper())
-
+        
         /**
          * Executes the given command at some time in the future.  The command
          * may execute in a new thread, in a pooled thread, or in the calling
@@ -105,7 +106,7 @@ private constructor(
          * @throws NullPointerException       if command is null
          */
         override fun execute(command: Runnable) {
-
+            
             mainThreadHandler.post(command)
         }
     }

@@ -35,27 +35,25 @@ import com.alaskalany.careershowcase.model.Contact
  */
 @Entity(tableName = "contacts_table")
 class ContactEntity : Contact {
-
+    
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contact_id")
     override var id: Int = 0
-
+    
     @ColumnInfo(name = "contact_title")
     override var title: String? = null
-
+    
     @ColumnInfo(name = "contact_description")
     override var description: String? = null
-
+    
     @ColumnInfo(name = "contact_logo_url")
     override var logoUrl: String? = null
-
-    constructor() {
-
-    }
-
+    
+    constructor()
+    
     @Ignore
     constructor(id: Int, title: String, description: String) {
-
+        
         this.id = id
         this.title = title
         this.description = description

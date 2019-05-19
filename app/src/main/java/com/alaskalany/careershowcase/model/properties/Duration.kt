@@ -25,7 +25,7 @@
 package com.alaskalany.careershowcase.model.properties
 
 interface Duration {
-
+    
     /**
      * @return
      */

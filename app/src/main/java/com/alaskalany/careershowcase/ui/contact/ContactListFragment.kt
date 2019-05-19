@@ -51,16 +51,16 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel
  * fragment (e.g. upon screen orientation changes).
  */
 class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
+    
     override fun onClick(item: Contact) {
-        Toast.makeText(this@ContactListFragment.context, "Clicked on ContactEntity Item", Toast.LENGTH_SHORT)
-                .show()
+        Toast.makeText(this@ContactListFragment.context, "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show()
     }
-
+    
     /**
      *
      */
     private var binding: FragmentContactListBinding? = null
-
+    
     /**
      *
      */
@@ -71,7 +71,7 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
      * @param adapter
      */
     protected var adapter: ContactAdapter? = null
-
+    
     /**
      *
      */
@@ -87,13 +87,13 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -102,11 +102,10 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false)
         adapter = ContactAdapter(this)
-        val context = binding!!.root
-                .context
+        val context = binding!!.root.context
         if (columnCount <= 1) {
             binding!!.listContact.layoutManager = LinearLayoutManager(context)
         } else {
@@ -115,7 +114,7 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
         binding!!.listContact.adapter = adapter
         return binding!!.root
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -130,40 +129,38 @@ class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+        
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this)
-                .get(ContactListViewModel::class.java)
+        val _model = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
         binding!!.contactListViewModel = _model
-        _model.contacts
-                .observe(this, Observer { contactEntities ->
-                    if (contactEntities != null) {
-                        adapter!!.setContactList(contactEntities)
-                    } else {
-                    }
-                    binding!!.executePendingBindings()
-                })
+        _model.contacts.observe(this, Observer { contactEntities ->
+            if (contactEntities != null) {
+                adapter!!.setContactList(contactEntities)
+            } else {
+            }
+            binding!!.executePendingBindings()
+        })
     }
     
     override fun top() {
-
+        
         binding!!.listContact.smoothScrollToPosition(0)
     }
-
+    
     companion object {
-
+        
         /**
          *
          */
         protected val ARG_COLUMN_COUNT = "column-count"
-
+        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): ContactListFragment {
-
+            
             val fragment = ContactListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

@@ -32,16 +32,16 @@ import com.alaskalany.careershowcase.file.FileData
 import com.alaskalany.careershowcase.repository.DataRepository
 
 class WorkListViewModel(application: Application) : AndroidViewModel(application) {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private val observableProducts: MediatorLiveData<List<WorkEntity>>
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     val works: LiveData<List<WorkEntity>>
         get() = observableProducts
-
+    
     init {
         observableProducts = MediatorLiveData()
         // set by default null, until we get data from the database.
@@ -51,17 +51,18 @@ class WorkListViewModel(application: Application) : AndroidViewModel(application
         // observe the changes of the products from the database and forward them
         observableProducts.addSource(listLiveData) { observableProducts.setValue(it) }
     }
-
-    class Factory(private val application: Application, private val workId: Int) : ViewModelProvider.NewInstanceFactory() {
-
+    
+    class Factory(private val application: Application, private val workId: Int) :
+        ViewModelProvider.NewInstanceFactory() {
+        
         private val repository: DataRepository
-
+        
         init {
             repository = (application as CareerShowcaseApp).repository!!
         }
-
+        
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-
+            
             return WorkViewModel(application, repository, workId) as T
         }
     }

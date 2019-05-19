@@ -29,36 +29,29 @@ import androidx.lifecycle.MediatorLiveData
 import com.alaskalany.careershowcase.entity.SkillEntity
 
 class SkillRepository(private val dataRepository: DataRepository) {
-
+    
     var observableSkills: MediatorLiveData<List<SkillEntity>>? = null
-
+    
     fun insertAll(skillEntities: List<SkillEntity>) {
-
     }
-
+    
     fun load(skillId: Int): LiveData<SkillEntity> {
-
-        return dataRepository.database
-                .skillDao()
-                .load(skillId)
+        
+        return dataRepository.database.skillDao().load(skillId)
     }
-
+    
     fun loadSync(skillId: Int): SkillEntity {
-
-        return dataRepository.database
-                .skillDao()
-                .loadSync(skillId)
+        
+        return dataRepository.database.skillDao().loadSync(skillId)
     }
-
+    
     fun loadAll(): LiveData<List<SkillEntity>> {
-
-        return dataRepository.database
-                .skillDao()
-                .loadAll()
+        
+        return dataRepository.database.skillDao().loadAll()
     }
-
+    
     fun getSkills(): MediatorLiveData<List<SkillEntity>>? {
-
+        
         return observableSkills
     }
 }

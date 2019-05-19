@@ -52,16 +52,16 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel
  * fragment (e.g. upon screen orientation changes).
  */
 class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
+    
     override fun onClick(item: Skill) {
-        Toast.makeText(this@SkillListFragment.context, "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
-                .show()
+        Toast.makeText(this@SkillListFragment.context, "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show()
     }
-
+    
     /**
      *
      */
     private var mBinding: FragmentSkillListBinding? = null
-
+    
     /**
      *
      */
@@ -72,7 +72,7 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @param adapter
      */
     protected var adapter: SkillAdapter? = null
-
+    
     /**
      *
      */
@@ -88,13 +88,13 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -103,11 +103,10 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false)
         adapter = SkillAdapter(this)
-        val context = mBinding!!.root
-                .context
+        val context = mBinding!!.root.context
         if (columnCount <= 1) {
             mBinding!!.listSkill.layoutManager = LinearLayoutManager(context)
         } else {
@@ -116,10 +115,10 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
         val decor = DividerItemDecoration(activity!!.applicationContext, DividerItemDecoration.HORIZONTAL)
         mBinding!!.listSkill.addItemDecoration(decor)
         mBinding!!.listSkill.adapter = adapter
-
+        
         return mBinding!!.root
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -134,40 +133,38 @@ class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+        
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this)
-                .get(SkillListViewModel::class.java)
+        val _model = ViewModelProviders.of(this).get(SkillListViewModel::class.java)
         mBinding!!.skillListViewModel = _model
-        _model.skills
-                .observe(this, Observer { pWorkEntities ->
-                    if (pWorkEntities != null) {
-                        adapter!!.setSkillList(pWorkEntities)
-                    } else {
-                    }
-                    mBinding!!.executePendingBindings()
-                })
+        _model.skills.observe(this, Observer { pWorkEntities ->
+            if (pWorkEntities != null) {
+                adapter!!.setSkillList(pWorkEntities)
+            } else {
+            }
+            mBinding!!.executePendingBindings()
+        })
     }
     
     override fun top() {
-
+        
         mBinding!!.listSkill.smoothScrollToPosition(0)
     }
-
+    
     companion object {
-
+        
         /**
          *
          */
         protected val ARG_COLUMN_COUNT = "column-count"
-
+        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): SkillListFragment {
-
+            
             val fragment = SkillListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.file.FileData
 
 class SkillListViewModel(application: Application) : AndroidViewModel(application) {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private val observableSkills: MediatorLiveData<List<SkillEntity>>
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     val skills: LiveData<List<SkillEntity>>
         get() = observableSkills
-
+    
     init {
         observableSkills = MediatorLiveData()
         // set by default null, until we get data from the database.

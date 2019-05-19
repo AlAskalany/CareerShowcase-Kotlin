@@ -36,11 +36,10 @@ class DataRepository private constructor(val database: AppDatabase) {
     val workRepository = WorkRepository(this)
     val skillRepository = SkillRepository(this)
     val educationRepository = EducationRepository(this)
-
+    
     private val isDatabaseCreated: Boolean?
-        get() = database.databaseCreated
-                .value
-
+        get() = database.databaseCreated.value
+    
     init {
         workRepository.works = MediatorLiveData<List<WorkEntity>>()
         workRepository.works!!.addSource<List<WorkEntity>>(workRepository.loadAll()) { workEntities ->
@@ -49,37 +48,31 @@ class DataRepository private constructor(val database: AppDatabase) {
             }
         }
         educationRepository.observableEducations = MediatorLiveData<List<EducationEntity>>()
-        educationRepository.observableEducations!!
-                .addSource<List<EducationEntity>>(educationRepository.loadAll()) { educationEntities ->
-                    if (isDatabaseCreated != null) {
-                        educationRepository.observableEducations!!
-                                .postValue(educationEntities)
-                    }
-                }
+        educationRepository.observableEducations!!.addSource<List<EducationEntity>>(educationRepository.loadAll()) { educationEntities ->
+            if (isDatabaseCreated != null) {
+                educationRepository.observableEducations!!.postValue(educationEntities)
+            }
+        }
         skillRepository.observableSkills = MediatorLiveData<List<SkillEntity>>()
-        skillRepository.observableSkills!!
-                .addSource<List<SkillEntity>>(skillRepository.loadAll()) { skillEntities ->
-                    if (isDatabaseCreated != null) {
-                        skillRepository.observableSkills!!
-                                .postValue(skillEntities)
-                    }
-                }
+        skillRepository.observableSkills!!.addSource<List<SkillEntity>>(skillRepository.loadAll()) { skillEntities ->
+            if (isDatabaseCreated != null) {
+                skillRepository.observableSkills!!.postValue(skillEntities)
+            }
+        }
         contactRepository.observableContacts = MediatorLiveData<List<ContactEntity>>()
-        contactRepository.observableContacts!!
-                .addSource<List<ContactEntity>>(contactRepository.loadAll()) { contactEntities ->
-                    if (isDatabaseCreated != null) {
-                        contactRepository.observableContacts!!
-                                .postValue(contactEntities)
-                    }
-                }
+        contactRepository.observableContacts!!.addSource<List<ContactEntity>>(contactRepository.loadAll()) { contactEntities ->
+            if (isDatabaseCreated != null) {
+                contactRepository.observableContacts!!.postValue(contactEntities)
+            }
+        }
     }
-
+    
     companion object {
-
+        
         private var INSTANCE: DataRepository? = null
-
+        
         fun getInstance(database: AppDatabase): DataRepository? {
-
+            
             if (INSTANCE == null) {
                 synchronized(DataRepository::class.java) {
                     if (INSTANCE == null) {

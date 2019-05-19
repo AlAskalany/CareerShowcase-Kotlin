@@ -33,16 +33,16 @@ import com.alaskalany.careershowcase.entity.ContactEntity
 
 @Dao
 interface ContactDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(contactEntities: List<ContactEntity>)
-
+    
     @Query("select * from contacts_table where contact_id = :id")
     fun load(id: Int): LiveData<ContactEntity>
-
+    
     @Query("select * from contacts_table where contact_id = :id")
     fun loadSync(id: Int): ContactEntity
-
+    
     @Query("SELECT * FROM contacts_table")
     fun loadAll(): LiveData<List<ContactEntity>>
 }

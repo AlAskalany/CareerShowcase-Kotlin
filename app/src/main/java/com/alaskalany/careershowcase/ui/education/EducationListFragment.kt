@@ -51,16 +51,16 @@ import com.alaskalany.careershowcase.viewmodel.EducationListViewModel
  * fragment (e.g. upon screen orientation changes).
  */
 class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback {
+    
     override fun onClick(item: Education) {
-        Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
-                .show()
+        Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show()
     }
-
+    
     /**
      *
      */
     private var binding: FragmentEducationListBinding? = null
-
+    
     /**
      *
      */
@@ -71,7 +71,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * @param adapter
      */
     protected var adapter: EducationAdapter? = null
-
+    
     /**
      *
      */
@@ -87,13 +87,13 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -102,11 +102,10 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false)
         adapter = EducationAdapter(this)
-        val context = binding!!.root
-                .context
+        val context = binding!!.root.context
         if (columnCount <= 1) {
             binding!!.listEducation.layoutManager = LinearLayoutManager(context)
         } else {
@@ -115,7 +114,7 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
         binding!!.listEducation.adapter = adapter
         return binding!!.root
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -130,40 +129,38 @@ class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback 
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+        
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this)
-                .get(EducationListViewModel::class.java)
+        val _model = ViewModelProviders.of(this).get(EducationListViewModel::class.java)
         binding!!.educationListViewModel = _model
-        _model.educations
-                .observe(this, Observer { pWorkEntities ->
-                    if (pWorkEntities != null) {
-                        adapter!!.setEducationList(pWorkEntities)
-                    } else {
-                    }
-                    binding!!.executePendingBindings()
-                })
+        _model.educations.observe(this, Observer { pWorkEntities ->
+            if (pWorkEntities != null) {
+                adapter!!.setEducationList(pWorkEntities)
+            } else {
+            }
+            binding!!.executePendingBindings()
+        })
     }
     
     override fun top() {
-
+        
         binding!!.listEducation.smoothScrollToPosition(0)
     }
-
+    
     companion object {
-
+        
         /**
          *
          */
         protected val ARG_COLUMN_COUNT = "column-count"
-
+        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): EducationListFragment {
-
+            
             val fragment = EducationListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

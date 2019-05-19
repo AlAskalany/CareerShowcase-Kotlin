@@ -50,16 +50,16 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel
  * fragment (e.g. upon screen orientation changes).
  */
 class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnClickCallback {
+    
     override fun onClick(item: Work) {
-        Toast.makeText(this@WorkListFragment.context, "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
-                .show()
+        Toast.makeText(this@WorkListFragment.context, "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show()
     }
-
+    
     /**
      *
      */
     private var binding: FragmentWorkListBinding? = null
-
+    
     /**
      *
      */
@@ -70,7 +70,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @param adapter
      */
     protected var adapter: WorkAdapter? = null
-
+    
     /**
      *
      */
@@ -86,13 +86,13 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             columnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -101,11 +101,10 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false)
         adapter = WorkAdapter(this)
-        val context = binding!!.root
-                .context
+        val context = binding!!.root.context
         if (columnCount <= 1) {
             binding!!.listWork.layoutManager = LinearLayoutManager(context)
         } else {
@@ -114,7 +113,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
         binding!!.listWork.adapter = adapter
         return binding!!.root
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -129,40 +128,38 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnCl
      * a previous saved state, this is the state.
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+        
         super.onActivityCreated(savedInstanceState)
-        val _model = ViewModelProviders.of(this)
-                .get(WorkListViewModel::class.java)
+        val _model = ViewModelProviders.of(this).get(WorkListViewModel::class.java)
         binding!!.workListViewModel = _model
-        _model.works
-                .observe(this, Observer { pWorkEntities ->
-                    if (pWorkEntities != null) {
-                        adapter!!.setWorkList(pWorkEntities)
-                    } else {
-                    }
-                    binding!!.executePendingBindings()
-                })
+        _model.works.observe(this, Observer { pWorkEntities ->
+            if (pWorkEntities != null) {
+                adapter!!.setWorkList(pWorkEntities)
+            } else {
+            }
+            binding!!.executePendingBindings()
+        })
     }
     
     override fun top() {
-
+        
         binding!!.listWork.smoothScrollToPosition(0)
     }
-
+    
     companion object {
-
+        
         /**
          *
          */
         protected val ARG_COLUMN_COUNT = "column-count"
-
+        
         /**
          * @param columnCount
          *
          * @return
          */
         fun newInstance(columnCount: Int): WorkListFragment {
-
+            
             val fragment = WorkListFragment()
             val args = Bundle()
             args.putInt(ARG_COLUMN_COUNT, columnCount)

@@ -36,17 +36,17 @@ import com.alaskalany.careershowcase.ui.overview.OverviewFragment
  * Main activity
  */
 class MainActivity : AppCompatActivity(), OverviewFragment.OnOverviewFragmentInteractionListener {
-
+    
     /**
      * Activity layout bindings
      */
     internal lateinit var binding: ActivityMainBinding
-
+    
     /**
      * Bottom navigation manager [BottomNavigationManager]
      */
     private var bottomNavigationManager: BottomNavigationManager? = null
-
+    
     /**
      * Called when the activity is starting.  This is where most initialization
      * should go: calling [.setContentView] to inflate the
@@ -77,23 +77,23 @@ class MainActivity : AppCompatActivity(), OverviewFragment.OnOverviewFragmentInt
      * @see .onPostCreate
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
-
+        
         // Bind to layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        
         // Instantiate the bottom navigation manager
         bottomNavigationManager = BottomNavigationManager(this, binding.navigation)
-
+        
         // Set bottom navigation to first fragment
         bottomNavigationManager!!.init(savedInstanceState == null)
-
+        
         // Handle connectivity
         val networkHandler = NetworkHandler(applicationContext)
         networkHandler.run()
     }
-
+    
     /**
      * Interface [OverviewFragment.OnOverviewFragmentInteractionListener]
      * for interacting with [OverviewFragment]
@@ -103,23 +103,23 @@ class MainActivity : AppCompatActivity(), OverviewFragment.OnOverviewFragmentInt
     override fun onOverviewFragmentInteraction(uri: Uri) {
         // TODO handle interaction with the OverviewFragment from MainActivity
     }
-
+    
     /**
      * Called when the activity has detected the user's press of the back
      * key.  The default implementation simply finishes the current activity,
      * but you can override this to do whatever you want.
      */
     override fun onBackPressed() {
-
+        
         if (!bottomNavigationManager!!.onBackPressed()) {
             // TODO make sure this is the write way to handle back-press
             //getSupportFragmentManager().popBackStack();
             finish()
         }
     }
-
+    
     companion object {
-
+        
         /**
          * Debugging tag
          */

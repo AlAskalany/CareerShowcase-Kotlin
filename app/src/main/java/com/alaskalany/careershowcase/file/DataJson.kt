@@ -30,12 +30,12 @@ import com.alaskalany.careershowcase.entity.SkillEntity
 import com.alaskalany.careershowcase.entity.WorkEntity
 
 class DataJson {
-
+    
     var education: List<EducationEntity>? = null
-
+    
     var work: List<WorkEntity>? = null
-
+    
     var skills: List<SkillEntity>? = null
-
+    
     var contacts: List<ContactEntity>? = null
 }

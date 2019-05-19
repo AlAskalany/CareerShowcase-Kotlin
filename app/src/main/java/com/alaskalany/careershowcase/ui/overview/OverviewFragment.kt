@@ -51,71 +51,71 @@ import org.jetbrains.annotations.Contract
  *
  */
 class OverviewFragment : Fragment(), ScrollToTop {
-
+    
     /**
      *
      */
     private var param1: String? = null
-
+    
     /**
      *
      */
     private var param2: String? = null
-
+    
     /**
      *
      */
     private var onOverviewFragmentInteractionListener: OnOverviewFragmentInteractionListener? = null
-
+    
     /**
      *
      */
     private var binding: FragmentOverviewBinding? = null
-
+    
     /**
      * @param uri
      */
     fun onButtonPressed(uri: Uri) {
-
+        
         if (onOverviewFragmentInteractionListener != null) {
             onOverviewFragmentInteractionListener!!.onOverviewFragmentInteraction(uri)
         }
     }
-
+    
     /**
      * @param context
      */
     override fun onAttach(context: Context) {
-
+        
         super.onAttach(context)
         registerListener(context)
     }
-
+    
     /**
      * @param context
      */
     @Contract("null -> fail")
     private fun registerListener(context: Context?) {
-
+        
         if (context is OnOverviewFragmentInteractionListener) {
             onOverviewFragmentInteractionListener = context
         } else {
             throw RuntimeException(context!!.toString() + " must implement OnOverviewFragmentInteractionListener")
         }
     }
-
+    
     /**
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             param1 = arguments!!.getString(ARG_PARAM1)
             param2 = arguments!!.getString(ARG_PARAM2)
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -124,62 +124,59 @@ class OverviewFragment : Fragment(), ScrollToTop {
      * @return
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false)
         binding!!.name = "Ahmed AlAskalany"
         binding!!.headline = "Software Engineer"
-
+        
         binding!!.imageButtonLinkedin.setOnClickListener { v ->
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/askalany/"))
             startActivity(browserIntent)
         }
-
+        
         binding!!.imageButtonGithub.setOnClickListener { v ->
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/AlAskalany"))
             startActivity(browserIntent)
         }
-
+        
         binding!!.imageButtonTwitter.setOnClickListener { v ->
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/Askalanism"))
             startActivity(browserIntent)
         }
         // Inflate the layout for this fragment
-        GlideApp.with(this)
-                .load(getString(R.string.profile_picture_url))
-                .into(binding!!.imageViewProfilePicture)
+        GlideApp.with(this).load(getString(R.string.profile_picture_url)).into(binding!!.imageViewProfilePicture)
         return binding!!.root
     }
-
+    
     /**
      * @param savedInstanceState
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+        
         super.onActivityCreated(savedInstanceState)
         binding!!.executePendingBindings()
     }
-
+    
     /**
      *
      */
     override fun onDetach() {
-
+        
         super.onDetach()
         unregisterListener()
     }
-
+    
     /**
      *
      */
     private fun unregisterListener() {
-
+        
         onOverviewFragmentInteractionListener = null
     }
-
+    
     override fun top() {
-
     }
-
+    
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -190,23 +187,23 @@ class OverviewFragment : Fragment(), ScrollToTop {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnOverviewFragmentInteractionListener {
-
+        
         // TODO: Update argument type and name
         fun onOverviewFragmentInteraction(uri: Uri)
     }
-
+    
     companion object {
-
+        
         /**
          *
          */
         private val ARG_PARAM1 = "param1"
-
+        
         /**
          *
          */
         private val ARG_PARAM2 = "param2"
-
+        
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -217,7 +214,7 @@ class OverviewFragment : Fragment(), ScrollToTop {
          * @return A new instance of fragment OverviewFragment.
          */
         fun newInstance(param1: String, param2: String): OverviewFragment {
-
+            
             val fragment = OverviewFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
@@ -226,4 +223,4 @@ class OverviewFragment : Fragment(), ScrollToTop {
             return fragment
         }
     }
-}// Required empty public constructor
+} // Required empty public constructor

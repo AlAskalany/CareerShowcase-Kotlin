@@ -34,21 +34,22 @@ import com.alaskalany.careershowcase.CareerShowcaseApp
 import com.alaskalany.careershowcase.entity.WorkEntity
 import com.alaskalany.careershowcase.repository.DataRepository
 
-class WorkViewModel(application: Application, dataRepository: DataRepository, private val workId: Int) : AndroidViewModel(application) {
-
+class WorkViewModel(application: Application, dataRepository: DataRepository, private val workId: Int) :
+    AndroidViewModel(application) {
+    
     val observableWork: LiveData<WorkEntity>
-
+    
     var work = ObservableField<WorkEntity>()
-
+    
     init {
         observableWork = dataRepository.workRepository.load(workId)
     }
-
+    
     fun setWork(product: WorkEntity) {
-
+        
         this.work.set(product)
     }
-
+    
     /**
      * A creator is used to inject the product ID into the ViewModel
      *
@@ -56,16 +57,17 @@ class WorkViewModel(application: Application, dataRepository: DataRepository, pr
      * This creator is to showcase how to inject dependencies into ViewModels. It's not
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
-    class Factory(private val application: Application, private val workId: Int) : ViewModelProvider.NewInstanceFactory() {
-
+    class Factory(private val application: Application, private val workId: Int) :
+        ViewModelProvider.NewInstanceFactory() {
+        
         private val repository: DataRepository
-
+        
         init {
             repository = (application as CareerShowcaseApp).repository!!
         }
-
+        
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-
+            
             return WorkViewModel(application, repository, workId) as T
         }
     }
